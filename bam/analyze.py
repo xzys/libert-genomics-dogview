@@ -38,58 +38,63 @@ def analyze_reads(s):
 
 		print 'analyzed reads', s.getrname(i)
 
+
 def analyze_genemodel(gff):
 	# apparently to remove invalid enteries
 	# print 'cleaning....',
-	# g = pybedtools.BedTool(gff).remove_invalid().saveas()
+	# gff = pybedtools.BedTool(pregff).remove_invalid().saveas()
 	# print 'cleaned'
 
 	l = len(gff)
 	print '%d total records found' % l
 
-	i = 0
-	cur_gene = ''
-	cur_gene_start = 0
-	cur_gene_end = 0
-	out = None
-	writer = None
+	
 	with open('data/gene_model_index', 'wb') as index:
 		index = csv.writer(index, delimiter='\t')
 		index.writerow(['gene_id', 'gene_name', 'start', 'end', 'stand', 'chrom'])
 
-		while i < l:
-			# for every gene make a new file
-			if cur_gene != gff[i].attrs['gene_id']:
-				# do this EXCEPT for very first time
-				if out != None: 
-					out.close()
-					# save index of information
-					index.writerow([cur_gene,
-									gff[i-1].attrs['gene_name'],
-									cur_gene_start, # start and end of entire gene, not just feature
-									cur_gene_end, 
-									gff[i-1].strand, 
-									gff[i-1].chrom])
+		# hold data about last gene
+		cur_gene = {'id' : '', 'start' : 0, 'end' : 0, 'name' : '', 'stand' : '', 'chrom' : ''}
+		out = None
+		writer = None
 
-				# move on to new gene
-				print 'starting gene %s' % gff[i].attrs['gene_id']
-				cur_gene = gff[i].attrs['gene_id']
-				cur_gene_start = gff[i].start
-
-				out =  open('data/models/' + cur_gene + '.model', 'wb')
-
-				writer = csv.writer(out, delimiter='\t')
-				writer.writerow(['start', 'end', 'type'])
-
-			cur_gene_start = min(cur_gene_start, gff[i].start)
-			cur_gene_end = max(cur_gene_end, gff[i].end)
-			writer.writerow([gff[i].start, gff[i].end, gff[i][2]])
-			i += 1
+		gff.each(split_gff, out=out, writer=writer, index=index, cur_gene=cur_gene)
+			
 
 	# make sure you close
 	out.close()
 
+def split_gff(feature, out, writer, index, cur_gene):
+	# for every gene make a new file
+	if cur_gene['id'] != feature.attrs['gene_id']:
+		# do this EXCEPT for very first time
+		if out != None: 
+			out.close()
+			# save index of information
+			index.writerow([cur_gene['id'],
+							cur_gene['name'],
+							cur_gene['start'], # start and end of entire gene, not just feature
+							cur_gene['end'], 
+							cur_gene['strand'], 
+							cur_gene['chrom']])
 
+		# move on to new gene
+		print 'starting gene %s' % feature.attrs['gene_id']
+		cur_gene['id'] = feature.attrs['gene_id']
+		cur_gene['name'] = feature.attrs['gene_name']
+		cur_gene['start'] = feature.start
+		cur_gene['start'] = feature.end
+		cur_gene['strand'] = feature.strand
+		cur_gene['chrom'] = feature.chrom
+
+		out = open('data/models/' + cur_gene + '.model', 'wb')
+
+		writer = csv.writer(out, delimiter='\t')
+		writer.writerow(['start', 'end', 'type'])
+
+	cur_gene['start'] = min(cur_gene['start'], feature.start)
+	cur_gene['end'] = max(cur_gene['end'], feature.end)
+	writer.writerow([feature.start, feature.end, feature[2]])
 
 def main():
 	# s = pysam.Samfile('ex1.sorted.bam', 'rb')
