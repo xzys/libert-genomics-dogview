@@ -61,7 +61,8 @@ var decode = function(error, data) {
     .y0(height)
     .y1(function(d) { return y(d.n); }));
 
-  x.domain([0, d3.max(data, function(d) { return d.i })]);
+  // x.domain([0, d3.max(data, function(d) { return d.i })]);
+  x.domain([0, 2000]);
   y.domain(["0", "80"]);
   var fn = files[file_index].match(/.+\/(.+)\.tsv/)[1];
 
