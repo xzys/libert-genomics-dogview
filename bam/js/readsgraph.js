@@ -101,4 +101,4 @@ function decode(error, data) {
   update(data);
 }
 
-d3.tsv('data/seq1reads.tsv', decode);
+d3.tsv('data/reads/seq1.reads.tsv', decode);
