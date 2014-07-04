@@ -1,0 +1,5 @@
+start	end	type
+1299	2802	exon
+1330	1858	CDS
+1330	1333	start_codon
+1858	1861	stop_codon

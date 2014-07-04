@@ -1,0 +1,6 @@
+start	end	type
+622381	622781	exon
+623381	628301	exon
+623423	624854	CDS
+623423	623426	start_codon
+624854	624857	stop_codon

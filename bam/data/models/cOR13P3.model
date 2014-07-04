@@ -1,0 +1,5 @@
+start	end	type
+278074	279010	CDS
+278074	279013	exon
+278074	278077	start_codon
+279010	279013	stop_codon

@@ -1,0 +1,9 @@
+start	end	type
+609	716	exon
+609	612	stop_codon
+612	716	CDS
+4295	4469	CDS
+4295	4469	exon
+4899	4974	CDS
+4899	5018	exon
+4971	4974	start_codon

@@ -1,0 +1,4 @@
+start	end	type
+308429	308974	CDS
+308429	310250	exon
+308971	308974	start_codon

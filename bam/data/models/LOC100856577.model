@@ -1,0 +1,9 @@
+start	end	type
+461	581	CDS
+461	581	exon
+461	464	start_codon
+4592	4772	CDS
+4592	4772	exon
+5689	5806	CDS
+5689	6159	exon
+5806	5809	stop_codon

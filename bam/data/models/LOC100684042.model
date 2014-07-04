@@ -1,0 +1,5 @@
+start	end	type
+375787	376726	exon
+375787	375790	stop_codon
+375790	376726	CDS
+376723	376726	start_codon

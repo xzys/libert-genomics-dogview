@@ -1,0 +1,7 @@
+start	end	type
+11480	11783	CDS
+11480	11783	exon
+11480	11483	start_codon
+14383	15652	CDS
+14383	15655	exon
+15652	15655	stop_codon

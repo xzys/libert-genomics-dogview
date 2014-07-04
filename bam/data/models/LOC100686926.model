@@ -1,0 +1,5 @@
+start	end	type
+9768	10674	CDS
+9768	10677	exon
+9768	9771	start_codon
+10674	10677	stop_codon

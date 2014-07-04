@@ -1,0 +1,11 @@
+start	end	type
+4528	4684	CDS
+4528	4684	exon
+4528	4531	start_codon
+6623	6711	CDS
+6623	6711	exon
+7560	7780	CDS
+7560	7780	exon
+10331	10563	CDS
+10331	10566	exon
+10563	10566	stop_codon

@@ -1,0 +1,9 @@
+start	end	type
+596	682	exon
+627	682	CDS
+627	630	start_codon
+1820	2011	CDS
+1820	2011	exon
+3193	3220	CDS
+3193	3321	exon
+3220	3223	stop_codon

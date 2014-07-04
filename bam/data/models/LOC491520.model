@@ -1,0 +1,9 @@
+start	end	type
+3008	3146	CDS
+3008	3146	exon
+3008	3011	start_codon
+4597	4703	CDS
+4597	4703	exon
+6743	6808	CDS
+6743	6937	exon
+6808	6811	stop_codon

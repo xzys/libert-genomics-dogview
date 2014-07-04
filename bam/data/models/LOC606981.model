@@ -1,0 +1,5 @@
+start	end	type
+279235	280171	exon
+279235	279238	stop_codon
+279238	280171	CDS
+280168	280171	start_codon

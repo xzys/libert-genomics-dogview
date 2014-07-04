@@ -1,0 +1,9 @@
+start	end	type
+7996	9057	exon
+8571	8574	stop_codon
+8574	9057	CDS
+9833	9982	CDS
+9833	9982	exon
+11501	11691	CDS
+11501	11691	exon
+11688	11691	start_codon

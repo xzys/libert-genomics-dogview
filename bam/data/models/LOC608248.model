@@ -1,0 +1,7 @@
+start	end	type
+19365	19824	exon
+19504	19507	stop_codon
+19507	19824	CDS
+21233	21294	CDS
+21233	21304	exon
+21291	21294	start_codon

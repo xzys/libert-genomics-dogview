@@ -1,0 +1,4 @@
+start	end	type
+36368160	36370589	CDS
+36368160	36368163	start_codon
+36370589	36370592	stop_codon

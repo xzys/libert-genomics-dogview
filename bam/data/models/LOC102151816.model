@@ -1,0 +1,16 @@
+start	end	type
+76	280	exon
+76	79	stop_codon
+79	280	CDS
+3404	3550	CDS
+3404	3550	exon
+4196	4303	CDS
+4196	4303	exon
+4885	4977	CDS
+4885	4977	exon
+6044	6220	CDS
+6044	6220	exon
+7810	7898	CDS
+7810	7953	exon
+7895	7898	start_codon
+8122	8239	exon

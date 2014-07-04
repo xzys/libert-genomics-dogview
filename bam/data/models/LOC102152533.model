@@ -1,0 +1,9 @@
+start	end	type
+1223	1504	exon
+1448	1504	CDS
+1448	1451	start_codon
+14686	14801	CDS
+14686	14801	exon
+14958	15129	CDS
+14958	15132	exon
+15129	15132	stop_codon

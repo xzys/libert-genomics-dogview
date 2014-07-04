@@ -1,0 +1,6 @@
+start	end	type
+22654	22981	exon
+23576	24769	exon
+24098	24515	CDS
+24098	24101	start_codon
+24515	24518	stop_codon

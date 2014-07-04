@@ -1,0 +1,5 @@
+start	end	type
+6328	7258	CDS
+6328	7261	exon
+6328	6331	start_codon
+7258	7261	stop_codon

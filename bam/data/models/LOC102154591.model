@@ -1,0 +1,7 @@
+start	end	type
+9313	9910	CDS
+9313	9910	exon
+9313	9316	start_codon
+10876	11098	CDS
+10876	11101	exon
+11098	11101	stop_codon

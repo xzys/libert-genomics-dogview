@@ -1,0 +1,5 @@
+start	end	type
+363411	364347	exon
+363411	363414	stop_codon
+363414	364347	CDS
+364344	364347	start_codon

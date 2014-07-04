@@ -1,3 +1,2 @@
 # dont upload that .gff files
 *.gff
-*.model

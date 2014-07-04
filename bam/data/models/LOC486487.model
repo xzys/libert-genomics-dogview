@@ -1,0 +1,5 @@
+start	end	type
+331580	332522	exon
+331580	331583	stop_codon
+331583	332522	CDS
+332519	332522	start_codon

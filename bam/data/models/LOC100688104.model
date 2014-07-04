@@ -1,0 +1,5 @@
+start	end	type
+6017	6386	exon
+6017	6020	stop_codon
+6020	6386	CDS
+6383	6386	start_codon

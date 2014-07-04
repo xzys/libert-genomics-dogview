@@ -1,0 +1,4 @@
+start	end	type
+2616025	2616104	CDS
+2616025	2616104	exon
+2616101	2616104	start_codon

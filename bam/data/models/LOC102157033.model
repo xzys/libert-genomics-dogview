@@ -1,0 +1,9 @@
+start	end	type
+47606	47692	exon
+47640	47692	CDS
+47640	47643	start_codon
+49533	49632	CDS
+49533	49632	exon
+52607	52813	CDS
+52607	53491	exon
+52813	52816	stop_codon

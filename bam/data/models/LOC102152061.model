@@ -1,0 +1,4 @@
+start	end	type
+6883244	6883279	CDS
+6883244	6883282	exon
+6883279	6883282	stop_codon

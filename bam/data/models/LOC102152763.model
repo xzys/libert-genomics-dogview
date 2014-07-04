@@ -1,0 +1,5 @@
+start	end	type
+12332	12910	exon
+12601	12604	stop_codon
+12604	12910	CDS
+12907	12910	start_codon

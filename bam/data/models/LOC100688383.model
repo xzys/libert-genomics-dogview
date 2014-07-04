@@ -1,0 +1,5 @@
+start	end	type
+78724	79693	CDS
+78724	79696	exon
+78724	78727	start_codon
+79693	79696	stop_codon

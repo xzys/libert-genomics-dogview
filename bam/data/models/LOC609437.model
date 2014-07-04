@@ -1,0 +1,5 @@
+start	end	type
+49349	50957	exon
+49349	49352	stop_codon
+49352	50957	CDS
+50954	50957	start_codon

@@ -1,0 +1,9 @@
+start	end	type
+10572	10712	exon
+10572	10575	stop_codon
+10575	10712	CDS
+10953	11148	CDS
+10953	11148	exon
+11538	11572	CDS
+11538	11572	exon
+11569	11572	start_codon

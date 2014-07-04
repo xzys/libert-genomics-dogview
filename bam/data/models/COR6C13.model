@@ -1,0 +1,5 @@
+start	end	type
+68502	69441	exon
+68502	68505	stop_codon
+68505	69441	CDS
+69438	69441	start_codon

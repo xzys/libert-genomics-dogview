@@ -1,0 +1,5 @@
+start	end	type
+15688	16621	exon
+15688	15691	stop_codon
+15691	16621	CDS
+16618	16621	start_codon

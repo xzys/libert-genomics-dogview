@@ -1,0 +1,5 @@
+start	end	type
+29833	31060	exon
+29833	29836	stop_codon
+29836	31060	CDS
+31057	31060	start_codon

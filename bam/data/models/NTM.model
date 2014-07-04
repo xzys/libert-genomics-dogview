@@ -1,0 +1,4 @@
+start	end	type
+3658229	3658311	CDS
+3658229	3658606	exon
+3658308	3658311	start_codon

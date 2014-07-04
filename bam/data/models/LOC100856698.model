@@ -1,0 +1,5 @@
+start	end	type
+11673	12600	CDS
+11673	12603	exon
+11673	11676	start_codon
+12600	12603	stop_codon

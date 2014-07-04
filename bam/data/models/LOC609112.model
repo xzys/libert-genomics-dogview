@@ -1,0 +1,9 @@
+start	end	type
+61251	61361	exon
+61309	61361	CDS
+61309	61312	start_codon
+62086	62185	CDS
+62086	62185	exon
+62378	62611	CDS
+62378	62904	exon
+62611	62614	stop_codon

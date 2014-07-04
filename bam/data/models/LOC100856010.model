@@ -1,0 +1,5 @@
+start	end	type
+381980	382445	CDS
+381980	382448	exon
+381980	381983	start_codon
+382445	382448	stop_codon

@@ -1,0 +1,7 @@
+start	end	type
+57056	57214	CDS
+57056	57214	exon
+57056	57059	start_codon
+60406	60659	CDS
+60406	61235	exon
+60659	60662	stop_codon

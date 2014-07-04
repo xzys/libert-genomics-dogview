@@ -1,0 +1,5 @@
+start	end	type
+577393	577625	exon
+577401	577575	CDS
+577401	577404	start_codon
+577575	577578	stop_codon

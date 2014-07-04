@@ -1,0 +1,11 @@
+start	end	type
+6779	6846	exon
+6786	6846	CDS
+6786	6789	start_codon
+7363	7471	CDS
+7363	7471	exon
+8202	8364	CDS
+8202	8364	exon
+8883	9068	CDS
+8883	9071	exon
+9068	9071	stop_codon

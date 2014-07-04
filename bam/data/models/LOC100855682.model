@@ -1,0 +1,9 @@
+start	end	type
+37523	39133	exon
+37523	37526	stop_codon
+37526	39133	CDS
+39873	40043	CDS
+39873	40043	exon
+41426	41584	CDS
+41426	41584	exon
+41581	41584	start_codon

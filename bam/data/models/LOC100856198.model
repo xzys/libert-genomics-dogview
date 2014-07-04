@@ -1,0 +1,4 @@
+start	end	type
+3618677	3619352	CDS
+3618677	3619498	exon
+3619352	3619355	stop_codon

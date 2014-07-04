@@ -1,0 +1,13 @@
+start	end	type
+2586	2748	CDS
+2586	2748	exon
+2586	2589	start_codon
+2804	3032	CDS
+2804	3032	exon
+7983	8030	CDS
+7983	8030	exon
+8377	8492	CDS
+8377	8492	exon
+8649	8820	CDS
+8649	8823	exon
+8820	8823	stop_codon

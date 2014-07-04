@@ -1,0 +1,6 @@
+start	end	type
+589881	590100	exon
+590403	590780	exon
+590409	590412	stop_codon
+590412	590706	CDS
+590703	590706	start_codon

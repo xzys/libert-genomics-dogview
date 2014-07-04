@@ -1,0 +1,5 @@
+start	end	type
+6702	8250	exon
+6850	7924	CDS
+6850	6853	start_codon
+7924	7927	stop_codon

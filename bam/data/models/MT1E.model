@@ -1,0 +1,7 @@
+start	end	type
+503	572	CDS
+503	572	exon
+503	506	start_codon
+1234	1323	CDS
+1234	1476	exon
+1323	1326	stop_codon

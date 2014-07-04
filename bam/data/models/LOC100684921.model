@@ -1,0 +1,5 @@
+start	end	type
+6253	7483	exon
+6748	6751	stop_codon
+6751	7408	CDS
+7405	7408	start_codon

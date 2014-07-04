@@ -1,0 +1,5 @@
+start	end	type
+71794	71911	CDS
+71794	71963	exon
+71794	71797	start_codon
+71911	71914	stop_codon

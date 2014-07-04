@@ -1,0 +1,6 @@
+start	end	type
+5460	5481	exon
+6955	8125	exon
+7281	7284	stop_codon
+7284	8125	CDS
+8122	8125	start_codon

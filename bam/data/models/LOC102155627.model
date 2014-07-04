@@ -1,0 +1,4 @@
+start	end	type
+8259745	8260066	CDS
+8259745	8260069	exon
+8260066	8260069	stop_codon

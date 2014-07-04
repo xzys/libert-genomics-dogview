@@ -1,0 +1,5 @@
+start	end	type
+22951	23857	CDS
+22951	23860	exon
+22951	22954	start_codon
+23857	23860	stop_codon

@@ -1,0 +1,5 @@
+start	end	type
+4109	4896	exon
+4191	4194	stop_codon
+4194	4851	CDS
+4848	4851	start_codon

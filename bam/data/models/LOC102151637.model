@@ -1,0 +1,13 @@
+start	end	type
+6	17	exon
+6	9	stop_codon
+9	17	CDS
+916	973	CDS
+916	973	exon
+1528	1722	CDS
+1528	1722	exon
+2324	2435	CDS
+2324	2435	exon
+3445	3532	CDS
+3445	3575	exon
+3529	3532	start_codon

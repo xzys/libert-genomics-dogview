@@ -1,0 +1,9 @@
+start	end	type
+10133	11009	exon
+10172	11009	CDS
+10172	10175	start_codon
+16231	16371	CDS
+16231	16371	exon
+16473	16579	CDS
+16473	16632	exon
+16579	16582	stop_codon

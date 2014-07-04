@@ -1,0 +1,9 @@
+start	end	type
+73	197	exon
+124	197	CDS
+124	127	start_codon
+675	783	CDS
+675	783	exon
+7782	8069	CDS
+7782	8235	exon
+8069	8072	stop_codon

@@ -1,0 +1,6 @@
+start	end	type
+952213	952438	exon
+952877	954254	exon
+952885	954064	CDS
+952885	952888	start_codon
+954064	954067	stop_codon

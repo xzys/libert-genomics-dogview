@@ -1,0 +1,15 @@
+start	end	type
+211	373	CDS
+211	373	exon
+211	214	start_codon
+3051	3152	CDS
+3051	3152	exon
+6399	6520	CDS
+6399	6520	exon
+6617	6752	CDS
+6617	6752	exon
+7249	7391	CDS
+7249	7391	exon
+8329	8490	CDS
+8329	9481	exon
+8490	8493	stop_codon

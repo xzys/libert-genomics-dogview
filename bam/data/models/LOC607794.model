@@ -1,0 +1,9 @@
+start	end	type
+7583	8302	exon
+8048	8051	stop_codon
+8051	8302	CDS
+9357	9443	CDS
+9357	9443	exon
+11227	11271	CDS
+11227	11612	exon
+11268	11271	start_codon

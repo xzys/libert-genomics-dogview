@@ -1,0 +1,4 @@
+start	end	type
+3501477	3501480	CDS
+3501477	3501671	exon
+3501477	3501480	start_codon

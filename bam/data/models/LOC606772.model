@@ -1,0 +1,13 @@
+start	end	type
+1851	1916	exon
+1851	1854	stop_codon
+1854	1916	CDS
+2295	2432	CDS
+2295	2432	exon
+3384	3496	CDS
+3384	3496	exon
+7488	7605	CDS
+7488	7605	exon
+9168	9226	CDS
+9168	9226	exon
+9223	9226	start_codon

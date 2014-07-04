@@ -1,0 +1,9 @@
+start	end	type
+2691	4012	exon
+3283	3286	stop_codon
+3286	4012	CDS
+8453	8507	CDS
+8453	8559	exon
+8504	8507	start_codon
+9791	9868	exon
+10105	10241	exon

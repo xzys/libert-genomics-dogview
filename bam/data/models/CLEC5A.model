@@ -1,0 +1,4 @@
+start	end	type
+7269374	7269483	CDS
+7269374	7269965	exon
+7269483	7269486	stop_codon

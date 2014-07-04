@@ -1,0 +1,9 @@
+start	end	type
+11740	12009	exon
+11921	11924	stop_codon
+11924	12009	CDS
+12453	12792	CDS
+12453	12792	exon
+15748	16290	CDS
+15748	16290	exon
+16287	16290	start_codon

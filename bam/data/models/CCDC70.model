@@ -1,0 +1,6 @@
+start	end	type
+258745	259609	exon
+258870	258873	stop_codon
+258873	259539	CDS
+259536	259539	start_codon
+263730	263939	exon

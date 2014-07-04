@@ -1,0 +1,5 @@
+start	end	type
+340613	341561	exon
+340613	340616	stop_codon
+340616	341561	CDS
+341558	341561	start_codon

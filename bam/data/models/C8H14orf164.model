@@ -1,0 +1,4 @@
+start	end	type
+3550146	3550188	CDS
+3550146	3552600	exon
+3550188	3550191	stop_codon

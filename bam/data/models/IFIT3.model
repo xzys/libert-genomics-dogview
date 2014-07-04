@@ -1,0 +1,7 @@
+start	end	type
+88041	88121	exon
+88116	88121	CDS
+88116	88119	start_codon
+103929	105391	CDS
+103929	105870	exon
+105391	105394	stop_codon

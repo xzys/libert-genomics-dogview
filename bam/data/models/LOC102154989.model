@@ -1,0 +1,5 @@
+start	end	type
+6	484	exon
+6	9	stop_codon
+9	484	CDS
+481	484	start_codon

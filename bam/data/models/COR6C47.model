@@ -1,0 +1,5 @@
+start	end	type
+112711	113644	CDS
+112711	113647	exon
+112711	112714	start_codon
+113644	113647	stop_codon

@@ -1,0 +1,5 @@
+start	end	type
+603781	604199	exon
+603815	603818	stop_codon
+603818	604196	CDS
+604193	604196	start_codon

@@ -1,0 +1,7 @@
+start	end	type
+240	455	CDS
+240	455	exon
+240	243	start_codon
+2346	2641	CDS
+2346	2821	exon
+2641	2644	stop_codon

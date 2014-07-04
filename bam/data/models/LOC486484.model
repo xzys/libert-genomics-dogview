@@ -1,0 +1,5 @@
+start	end	type
+253894	254734	exon
+253894	253897	stop_codon
+253897	254734	CDS
+254731	254734	start_codon

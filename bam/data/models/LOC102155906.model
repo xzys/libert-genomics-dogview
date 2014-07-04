@@ -1,0 +1,4 @@
+start	end	type
+2915172	2915208	CDS
+2915172	2915712	exon
+2915208	2915211	stop_codon

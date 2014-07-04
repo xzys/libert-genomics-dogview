@@ -1,0 +1,7 @@
+start	end	type
+60358	60732	exon
+60358	60361	stop_codon
+60361	60732	CDS
+64481	64849	CDS
+64481	64849	exon
+64846	64849	start_codon

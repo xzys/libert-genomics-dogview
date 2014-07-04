@@ -1,0 +1,8 @@
+start	end	type
+9205	9236	CDS
+9205	9236	exon
+9205	9208	start_codon
+9327	9557	CDS
+9327	9562	exon
+9557	9560	stop_codon
+9833	10726	exon

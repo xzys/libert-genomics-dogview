@@ -1,0 +1,11 @@
+start	end	type
+6426	6556	exon
+6426	13378	exon
+6519	6522	stop_codon
+6519	6522	stop_codon
+6522	6556	CDS
+6522	13341	CDS
+7363	13341	CDS
+7363	13378	exon
+13338	13341	start_codon
+13338	13341	start_codon
