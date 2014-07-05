@@ -57,9 +57,9 @@ var decode = function(error, data) {
 
   // add line
   lines.push(d3.svg.area()
-    .x(function(d) { return x(d.i); })
-    .y0(height)
-    .y1(function(d) { return y(d.n); }));
+      .x(function(d) { return x(d.i); })
+      .y0(height)
+      .y1(function(d) { return y(d.n); }));
 
   // x.domain([0, d3.max(data, function(d) { return d.i })]);
   x.domain([0, 2000]);

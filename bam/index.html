@@ -14,7 +14,7 @@ body {
 }
 
 .y.axis {
-  display: none;
+  /*display: none;*/
 }
 
 .line {
@@ -36,9 +36,27 @@ body {
   margin: 1px;
 }
 
+
+div.tooltip {
+  position: absolute;           
+  text-align: left;           
+  line-height: 1;
+  width: 100px;                  
+  height: 40px;      
+  font: 12px sans-serif;
+  border: 0px;
+  font-weight: bold;
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+
+  pointer-events: none;     
+}
+
 </style>
 <body>
 </body>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <!-- <script src="js/pileupgraph.js"></script> -->
-<script src="js/readsgraph.js"></script>
+<!-- <script src="js/readsgraph.js"></script> -->
+<script src="js/genemodel.js"></script>
