@@ -17,6 +17,7 @@ var yAxis = d3.svg.axis()
     .orient("left");
 
 var gene_model_index,
+		gene_name = '',
 		gene_start = 0,
 		gene_end = 0;
 ;
@@ -112,7 +113,7 @@ function decode_pileups(error, data) {
     d.i = i++;
   });
   x.domain([0, 2000]);
-  y.domain(["0", "80"]);
+  y.domain([0, 60]);
 	// naw
 	update_pileups(data);
 };
@@ -121,22 +122,13 @@ function update_pileups(data) {
 	// add line
 	var fn = files[file_index].match(/.+\/(.+)\.tsv/)[1];
 
-  lines.push(d3.svg.area()
-      .x(function(d) { return x(d.i); })
-      .y0(height - genemodel_height)
-      .y1(function(d) { return y(d.n); }));
 
 	d3.select(".index").append("div")
       .style("background-color", colors[cindex % colors.length])
       .attr("onmouseover", "highlight(this)")
       .text(fn);
 
-  svg.select(".x.axis")
-      .transition().duration(400)
-      .call(xAxis);
-  svg.select(".y.axis")
-      .transition().duration(400)
-      .call(yAxis);
+  reset_axes();
 
   svg.append("path")
       .datum(data)
@@ -144,7 +136,12 @@ function update_pileups(data) {
       .attr("id", fn)
       .style("stroke", colors[cindex % colors.length])
       .style("fill", colors[cindex++ % colors.length])
-      .attr("d", lines[lines.length - 1]); // last line added
+      .attr("d", 
+      	d3.svg.area()
+			      .x(function(d) { return x(d.i); })
+			      .y0(height - genemodel_height)
+			      .y1(function(d) { return y(d.n); })
+      ); // last line added
 }
 
 /* ANALYZE READS */
@@ -340,6 +337,7 @@ search.onEnter = function() {
 		if(gene_model_index[i].gene_id == text) {
 			gene_start = gene_model_index[i].start;
 			gene_end = gene_model_index[i].end;
+			gene_name = gene_model_index[i].gene_name;
 			// console.log('found');
 			break;
 		}
