@@ -53,10 +53,39 @@ div.tooltip {
   pointer-events: none;     
 }
 
+#searchbox, form {
+  position: relative;
+  left: 50px;
+  width: 100px;
+  padding: 7px;
+}
+
+#searchbox {
+  background: #eee;
+  border: 1px solid;
+
+}
+
 </style>
 <body>
+  <form id="form-container">
+    <!-- <select onchange="">
+      <option value="dog1">dog1</option>
+      <option value="dog2">dog2</option>
+      <option value="dog3">dog3</option>
+      <option value="dog4">dog4</option>
+    </select> -->
+  </form>
+  
+  <div id="searchbox" >
+    <span>search gene:</span>
+  </div>
+  
+  <div id="svg-container"></div>
 </body>
 <script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="js/complete.ly.1.0.1.min.js"></script>
+
 <!-- <script src="js/pileupgraph.js"></script> -->
 <!-- <script src="js/readsgraph.js"></script> -->
 <script src="js/genemodel.js"></script>
