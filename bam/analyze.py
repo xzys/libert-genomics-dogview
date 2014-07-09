@@ -1,7 +1,7 @@
 import pysam
 import pybedtools
 import csv
-import time
+import time, sys
 
 class Counter:
 	def __init__(self, length):
@@ -14,16 +14,18 @@ class Counter:
 
 
 def analyze_pileups(s):
-    for i in range(len(s.lengths)):
+    # for i in range(len(s.lengths)):
+    for i in range(10):
+		print 'analyzing pileup %s...' % s.getrname(i)
 		pileup = s.pileup(s.getrname(i), 10, int(s.lengths[i]))
 
-		with open('data/' + s.getrname(i) + '.tsv', 'wb') as out:
+		with open('data/pileups/' + s.getrname(i) + '.tsv', 'wb') as out:
 			out = csv.writer(out, delimiter='\t')
 			out.writerow(['n'])
 			for pile in pileup:
 				out.writerow([pile.n])
-
-		print 'analyzed pileup', s.getrname(i)
+		print 'DONE'
+		sys.stdout.flush()
 
 def analyze_reads(s):
 	for i in range(len(s.lengths)):
@@ -103,15 +105,18 @@ def split_gff(feature, cur_gene, total):
 	cur_gene['num'] += 1
 
 def main():
-	# s = pysam.Samfile('ex1.sorted.bam', 'rb')
+	print 'loading...',
+	s = pysam.Samfile('/media/Data/Downloads/real/accepted_hits_2_old.bam', 'rb')
+	print 'loaded'
+	sys.stdout.flush()
+	analyze_pileups(s)
+	# analyze_reads(s)
 	
 
-	# analyze_pileups(s)
-	# analyze_reads(s)
-	print 'loading.....',
-	gff = pybedtools.BedTool('../latest_dog_genes.gff')
-	print 'loaded'
-	analyze_genemodel(gff)
+	# print 'loading.....',
+	# gff = pybedtools.BedTool('../latest_dog_genes.gff')
+	# print 'loaded'
+	# analyze_genemodel(gff)
 
 
 if __name__ == '__main__':

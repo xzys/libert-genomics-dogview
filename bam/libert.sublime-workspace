@@ -1,0 +1,866 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"vis",
+				"visible"
+			],
+			[
+				"sel",
+				"selected"
+			],
+			[
+				"update",
+				"update"
+			],
+			[
+				"frae",
+				"frames"
+			],
+			[
+				"frame",
+				"framelist"
+			],
+			[
+				"mouse",
+				"mouseover_frame"
+			],
+			[
+				"off",
+				"offsetTop"
+			],
+			[
+				"onmouse",
+				"onmouseover	Attr"
+			],
+			[
+				"x",
+				"x"
+			],
+			[
+				"y",
+				"y"
+			],
+			[
+				"trans",
+				"transition"
+			],
+			[
+				"gene",
+				"gene_name"
+			],
+			[
+				"gen",
+				"genemodel_height"
+			],
+			[
+				"sele",
+				"selectAll"
+			],
+			[
+				"dec",
+				"decode_genemodel"
+			],
+			[
+				"genemode",
+				"gene_model_index"
+			],
+			[
+				"gne",
+				"gene_id"
+			],
+			[
+				"onc",
+				"onclick	Attr"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"for",
+				"form	Tag"
+			],
+			[
+				"co",
+				"console"
+			],
+			[
+				"dan",
+				"dancer_selected"
+			],
+			[
+				"a",
+				"attr"
+			],
+			[
+				"tra",
+				"transition"
+			],
+			[
+				"st",
+				"stroke-width"
+			],
+			[
+				"u",
+				"update_arrow"
+			],
+			[
+				"on",
+				"onmousedown"
+			],
+			[
+				"tran",
+				"transition"
+			],
+			[
+				"li",
+				"li	Tag"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"out",
+				"outline-color"
+			],
+			[
+				"s",
+				"select"
+			],
+			[
+				"ro",
+				"rcolors"
+			],
+			[
+				"sta",
+				"stacker"
+			],
+			[
+				"reads",
+				"reads"
+			],
+			[
+				"f",
+				"function"
+			],
+			[
+				"g",
+				"gene-node"
+			],
+			[
+				"ge",
+				"genemodel_height"
+			],
+			[
+				"geen",
+				"gene_start"
+			],
+			[
+				"d",
+				"d"
+			],
+			[
+				"wrt",
+				"writer"
+			],
+			[
+				"ana",
+				"analyzed"
+			],
+			[
+				"start",
+				"start"
+			],
+			[
+				"cur",
+				"cur_gene_name"
+			],
+			[
+				"cu",
+				"cur_gene"
+			],
+			[
+				"wrte",
+				"writerow"
+			],
+			[
+				"in",
+				"index"
+			],
+			[
+				"h",
+				"h"
+			],
+			[
+				"max",
+				"max_h"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"borde-rr",
+				"border-radius"
+			],
+			[
+				"file",
+				"file_index"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"da",
+				"datum"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"n",
+				"n"
+			],
+			[
+				"clie",
+				"client_tag"
+			],
+			[
+				"cl",
+				"client_user_string"
+			],
+			[
+				"esc",
+				"esc_key"
+			],
+			[
+				"game",
+				"game_finished"
+			],
+			[
+				"end",
+				"end_game"
+			],
+			[
+				"lines",
+				"lines"
+			],
+			[
+				"main",
+				"main_state"
+			],
+			[
+				"pro",
+				"process_keydown"
+			],
+			[
+				"line",
+				"line_completed"
+			],
+			[
+				"score",
+				"score_text"
+			],
+			[
+				"sco",
+				"score_text"
+			],
+			[
+				"FONT",
+				"FONT_STYLE2"
+			],
+			[
+				"song",
+				"song_enter"
+			],
+			[
+				"song_s",
+				"song_sel_hl"
+			],
+			[
+				"son",
+				"song_selected"
+			],
+			[
+				"load",
+				"load_text"
+			],
+			[
+				"set",
+				"set_text"
+			],
+			[
+				"lad",
+				"load_textr"
+			],
+			[
+				"loa",
+				"load_looper"
+			],
+			[
+				"load_",
+				"load_text"
+			],
+			[
+				"col",
+				"load_color"
+			],
+			[
+				"LO",
+				"LOADING_XSTYLES"
+			],
+			[
+				"L",
+				"LOADING_XSTYLES"
+			],
+			[
+				"LOAD",
+				"LOADING_STYLE"
+			],
+			[
+				"CON",
+				"COLUMN_W"
+			],
+			[
+				"conte",
+				"context_lines"
+			],
+			[
+				"OK",
+				"OKGREEN"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/media/Data/Dropbox/Projects/raas-choreo/index.html",
+			"settings":
+			{
+				"buffer_size": 2025,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/media/Data/Dropbox/Projects/raas-choreo/data/dance.json",
+			"settings":
+			{
+				"buffer_size": 705,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/media/Data/Dropbox/Projects/raas-choreo/choreoapp.js",
+			"settings":
+			{
+				"buffer_size": 7938,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/media/Data/Dropbox/Projects/raas-choreo/css/app.css",
+			"settings":
+			{
+				"buffer_size": 2212,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 248.0,
+		"selected_items":
+		[
+			[
+				"view",
+				"View: Toggle Menu"
+			],
+			[
+				"vi",
+				"View: Toggle Menu"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"lower",
+				"Convert Case: Lower Case"
+			],
+			[
+				"lowe",
+				"Convert Case: Lower Case"
+			],
+			[
+				"v",
+				"View: Toggle Menu"
+			],
+			[
+				"viw",
+				"View: Toggle Menu"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"vie",
+				"View: Toggle Menu"
+			],
+			[
+				"preview",
+				"Markdown Preview: Github Flavored Markdown: Preview in Browser"
+			],
+			[
+				"markdown",
+				"Markdown Preview: Python Markdown: Preview in Browser"
+			],
+			[
+				"view ",
+				"View: Toggle Menu"
+			],
+			[
+				"menu",
+				"View: Toggle Menu"
+			],
+			[
+				"packaage",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 436.0
+	},
+	"console":
+	{
+		"height": 139.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/media/Data/Dropbox/Libert Lab/libert-genomics-pipeline/bam/js/genemodel.js",
+		"/media/Data/Dropbox/Libert Lab/libert-genomics-pipeline/bam/index.html",
+		"/media/Data/Dropbox/Projects/raas-choreo/choreoapp.js",
+		"/home/sachin/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/sachin/.config/sublime-text-3/Packages/User/JavaScript.sublime-settings",
+		"/home/sachin/.config/sublime-text-3/Packages/User/HTML.sublime-settings",
+		"/media/Data/Dropbox/Libert Lab/libert-genomics-pipeline/bam/js/pileupgraph.js",
+		"/media/Data/Dropbox/Libert Lab/libert-genomics-pipeline/bam/data/gene_model_index",
+		"/media/Data/Dropbox/Projects/raas-choreo/index.html",
+		"/media/Data/Dropbox/Libert Lab/genomics-pipeline/bam/js/pileupgraph.js",
+		"/media/Data/Dropbox/Libert Lab/genomics-pipeline/bam/index.html",
+		"/media/Data/Dropbox/Projects/raas-choreo/data/dance.json",
+		"/media/Data/Dropbox/Projects/raas-choreo/data/ex.json",
+		"/media/Data/Dropbox/Libert Lab/genomics-pipeline/bam/js/genemodel.js",
+		"/media/Data/Dropbox/Libert Lab/genomics-pipeline/bam/js/readsgraph.js",
+		"/media/Data/Dropbox/MCAT/Chemistry/Gen Chem Chapter 1-3",
+		"/media/Data/Dropbox/Libert Lab/genomics-pipeline/bam/data/models/ADNP2.model",
+		"/media/Data/Dropbox/Libert Lab/genomics-pipeline/bam/data/gene_model_index",
+		"/media/Data/Dropbox/Libert Lab/genomics-pipeline/.gitignore",
+		"/media/Data/Dropbox/Libert Lab/genomics-pipeline/latest_dog_genes.gff",
+		"/media/Data/Dropbox/Projects/todotxt-study-suite/.todo.actions.d/lsgroup.py",
+		"/media/Data/Dropbox/Libert Lab/genomics-pipeline/bam/analyze2.py",
+		"/media/Data/Dropbox/Libert Lab/genomics-pipeline/latest_dog_genes_subset.gff",
+		"/media/Data/Dropbox/Libert Lab/genomics-pipeline/bam/data/PARD6G.model",
+		"/media/Data/Dropbox/Libert Lab/genomics-pipeline/bam/data/models/PARD6G.model.tsv",
+		"/media/Data/Dropbox/Libert Lab/genomics-pipeline/bam/data/seq1reads.tsv",
+		"/media/Data/Dropbox/Projects/roothealth/healthapp/frontend/templates/frontend/login_modal.html",
+		"/media/Data/Dropbox/Projects/roothealth/healthapp/frontend/templates/frontend/register_modal.html",
+		"/media/Data/Dropbox/Projects/roothealth/healthapp/frontend/static/css/app.css",
+		"/media/Data/Dropbox/Projects/roothealth/healthapp/frontend/templates/frontend/profile.html",
+		"/media/Data/Dropbox/Projects/roothealth/healthapp/frontend/static/css/ratchet.css",
+		"/media/Data/Dropbox/Projects/roothealth/healthapp/frontend/templates/frontend/navbar.html",
+		"/media/Data/Dropbox/Projects/roothealth/healthapp/frontend/urls.py",
+		"/media/Data/Dropbox/Projects/roothealth/healthapp/frontend/templates/frontend/friends.html",
+		"/media/Data/Dropbox/Projects/roothealth/healthapp/frontend/templates/frontend/local.html",
+		"/media/Data/Dropbox/Projects/roothealth/healthapp/frontend/static/js/radar.js",
+		"/media/Data/Dropbox/Projects/roothealth/healthapp/frontend/templates/frontend/notification_modal.html",
+		"/media/Data/Dropbox/Projects/roothealth/healthapp/frontend/templates/frontend/notification_modal",
+		"/media/Data/Dropbox/Projects/roothealth/healthapp/frontend/templates/frontend/login.html",
+		"/media/Data/Dropbox/Projects/roothealth/healthapp/frontend/views.py",
+		"/media/Data/Dropbox/Projects/roothealth/healthapp/frontend/templates/frontend/detail.html",
+		"/media/Data/Dropbox/Libert Lab/genomics-pipeline/bam/ex1.sam",
+		"/media/Data/Dropbox/Libert Lab/genomics-pipeline/bam/ex1.sorted.bam",
+		"/media/Data/Temporary/bam/ex1.sam",
+		"/media/Data/Temporary/bam/index.html",
+		"/media/Data/Temporary/bam/ex1.sorted.bam",
+		"/media/Data/Downloads/bam/ex1.sam",
+		"/media/Data/Downloads/bam/analyze.py",
+		"/media/Data/Downloads/bam/index.html",
+		"/media/Data/Downloads/bam/data/seq2.tsv",
+		"/media/Data/Downloads/bam/data/seq1.tsv",
+		"/media/Data/Dropbox/Projects/lyric-boss/scripts/get_lyrics.py",
+		"/media/Data/Dropbox/Projects/lyric-boss/js/load.js",
+		"/media/Data/Dropbox/Projects/lyric-boss/js/main.js",
+		"/media/Data/Dropbox/Projects/lyric-boss/index.html",
+		"/media/Data/Downloads/ex1.sam",
+		"/media/Data/Dropbox/Projects/lyric-boss/audio/cantholdus.lrc",
+		"/home/sachin/.config/sublime-text-3/Packages/Default/Default (Linux).sublime-keymap",
+		"/home/sachin/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
+		"/media/Data/Dropbox/Projects/lyric-boss/audio/cantholdus.lrc.bkup",
+		"/media/Data/Dropbox/Projects/lyric-boss/audio/cantholdus.lrc.bkup2",
+		"/home/sachin/Downloads/genomics/bamtools/build/Makefile",
+		"/var/log/apt/history.log",
+		"/media/Data/Dropbox/Libert Lab/genomics-pipeline/install.sh",
+		"/media/Data/Dropbox/Projects/lyric-boss/audio/cant_hold_us.lrc",
+		"/home/sachin/.todo.actions.d/lsgroup.py",
+		"/home/sachin/Downloads/cinnamon-chronumix-master/README.md",
+		"/media/sachin/Data/Dropbox/Projects/todotxt-study-suite/README.md",
+		"/home/sachin/.todo.actions.d/birdseye",
+		"/home/sachin/.scripts/todo.cfg",
+		"/home/sachin/.todo.actions.d/lsgp",
+		"/home/sachin/.todo.actions.d/lsg",
+		"/home/sachin/.todo.actions.d/lsgc",
+		"/home/sachin/.todo.actions.d/addr",
+		"/media/sachin/Data/Dropbox/Projects/todotxt-study-suite/lsawk.py",
+		"/media/sachin/Data/Dropbox/Projects/todotxt-study-suite/lsawk (sachin-UX302LA's conflicted copy 2014-06-25).py",
+		"/media/sachin/Data/Dropbox/.todo/lsawk.py",
+		"/home/sachin/packages.txt",
+		"/home/sachin/Downloads/Numix/README.md",
+		"/media/sachin/Data/Dropbox/Libert Lab/genomics-pipeline/install.sh",
+		"/home/sachin/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings"
+	],
+	"find":
+	{
+		"height": 38.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"selectActor",
+			"ul",
+			"option",
+			"select",
+			"input",
+			"Actb",
+			".toggle {",
+			".toggle",
+			"200, 200",
+			"border-radius: 3",
+			"textarea ",
+			")\n",
+			"intron",
+			">\n",
+			"]i ",
+			" i'",
+			" i' ",
+			" i ",
+			"\"",
+			". ",
+			"[0-9]{2}:[0-9]{4}",
+			"[0-9]{2}()[0-9]{2}",
+			"\"",
+			"]i ",
+			" i'",
+			" i'm",
+			" i ",
+			".",
+			"function (",
+			"-",
+			".",
+			",",
+			"!",
+			".",
+			"setShadow",
+			"highlight",
+			"highlight.",
+			"highlight",
+			",",
+			"console"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"select_actor",
+			"li",
+			"button",
+			"option",
+			"select",
+			"]I ",
+			" I'",
+			" I' ",
+			" I ",
+			"",
+			" ",
+			"[0-9]{2}:[0-9]{2}:[0-9]{2}",
+			":",
+			"",
+			"]I ",
+			" I'",
+			" I'm",
+			" I ",
+			"",
+			"function(",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/media/Data/Dropbox/Projects/raas-choreo/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2025,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1692,
+								1692
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 298.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/media/Data/Dropbox/Projects/raas-choreo/data/dance.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 705,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								15,
+								15
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/media/Data/Dropbox/Projects/raas-choreo/choreoapp.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7938,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7421,
+								7421
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4829.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 3,
+					"file": "/media/Data/Dropbox/Projects/raas-choreo/css/app.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2212,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2002,
+								2002
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1520.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 24.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.655370177268,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "libert.sublime-project",
+	"replace":
+	{
+		"height": 72.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 150.0,
+	"status_bar_visible": false,
+	"template_settings":
+	{
+	}
+}

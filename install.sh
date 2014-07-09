@@ -10,7 +10,9 @@ echo "Hello stranger. Ready to install here?"
 
 mkdir install
 cd install
-sudo apt-get install make cmake g++ zlib1g-dev zlib1g lib61z1 tophat fastqc cufflinks samtools -y
+sudo apt-get install zlib1g-dev zlib1g build-essential make cmake g++ -y
+
+sudo apt-get install tophat fastqc cufflinks samtools -y
 
 git clone git://github.com/pezmaster31/bamtools.git
 cd bamtools
