@@ -157,7 +157,9 @@ function decode_reads(error, data) {
 }
 
 function update_reads(data) {
-	var reads = svg.selectAll(".reads").data(data);
+	svg.selectAll(".read").remove();
+
+	var reads = svg.selectAll(".read").data(data);
 
 	// reads.enter().append("line")
 	// 		.attr("x1", function(d) { return x(d.start); })
@@ -174,8 +176,8 @@ function update_reads(data) {
 	reads.enter().append("line")
 			.attr("class", "read")
 			.attr("x1", function(d) { return x(d.start - gene_start); })
-			.attr("y1", function(d) { return height - genemodel_height; })
 			.attr("x2", function(d) { return x(d.end - gene_start); })
+			.attr("y1", function(d) { return height - genemodel_height; })
 			.attr("y2", function(d) { return height - genemodel_height; })
 			.style("stroke", function(d) { return ((d.read1 == "True") ? rcolors[0] : rcolors[1]); })
 			.style("stroke-width", "4")
@@ -186,6 +188,13 @@ function update_reads(data) {
 			.attr("y1", function(d) { return y(d.h); })
 			.attr("y2", function(d) { return y(d.h); })
 			.style("opacity", "1")
+
+	reads
+			.attr("y1", function(d) { return y(d.h); })
+			.attr("y2", function(d) { return y(d.h); })
+			.attr("x1", function(d) { return x(d.start - gene_start); })
+			.attr("x2", function(d) { return x(d.end - gene_start); })
+			.style("stroke", function(d) { return ((d.read1 == "True") ? rcolors[0] : rcolors[1]); });
 	
 	reads.exit().remove();
 
@@ -195,7 +204,6 @@ function update_reads(data) {
 /* ANALYZE GENEMODEL */
 function decode_genemodel(error, data) {
 	// data.forEach(stacker);
-
 	update_genemodel(data);
 }
 
@@ -341,9 +349,9 @@ search.onEnter = function() {
 			gene_end = gene_model_index[i].end;
 			gene_name = gene_model_index[i].gene_name;
 			
-			console.log('found' + ' ' + 
-									gene_model_index[i].start + ' ' + gene_model_index[i].end + ' ' +
-									gene_model_index[i].chrom);
+			// console.log('found' + ' ' + 
+			// 						gene_model_index[i].start + ' ' + gene_model_index[i].end + ' ' +
+			// 						gene_model_index[i].chrom);
 			break;
 		}
 	}
@@ -357,6 +365,9 @@ search.onEnter = function() {
 	}
 
 	d3.tsv('data/genes/' + gene_name + 'reads.tsv', decode_reads);
+	// d3.tsv('data/genes/ANXA1reads.tsv', decode_reads);
+	console.log('asda');
+	// d3.tsv('data/genes/ADNP2reads.tsv', decode_reads);
 }
 
 setTimeout(function() {	search.input.focus(); },0);
@@ -367,9 +378,5 @@ setTimeout(function() {	search.input.focus(); },0);
 var files = ['data/seq1.tsv', 'data/seq2.tsv'],
     file_index = 0;
 
-
-
 d3.tsv('data/gene_model_index', decode_geneindex);
-// d3.tsv('data/pileups/seq1.tsv', decode_pileups);
-
 resize();
