@@ -1,6 +1,6 @@
 var margin = {top: 20, right: 20, bottom: 30, left: 50},
     width = 1600 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom,
+    height = 800 - margin.top - margin.bottom,
     genemodel_height = 120;
 
 var rcolors = ["rgb(255, 0, 0)", "rgb(0, 0, 255)", "rgb(100, 100, 100)", "rgb(0, 0, 0)", "#555"];
@@ -112,8 +112,7 @@ function decode_pileups(error, data) {
   data.forEach(function(d) {
     d.i = i++;
   });
-  x.domain([0, 2000]);
-  y.domain([0, 60]);
+  
 	// naw
 	update_pileups(data);
 };
@@ -149,14 +148,16 @@ function decode_reads(error, data) {
 	// make pileup
 	data.forEach(stacker);
 
-	x.domain([0, 2000]);
-	y.domain([0, d3.max(data, function(d) { return d.h; })]);
+	console.log(gene_start + ' ' + gene_end);
+
+	x.domain([0, gene_end - gene_start]);
+	y.domain([0, Math.max(100, d3.max(data, function(d) { return d.h; }))]);
 
 	update_reads(data);
 }
 
 function update_reads(data) {
-	var reads = svg.selectAll("reads").data(data);
+	var reads = svg.selectAll(".reads").data(data);
 
 	// reads.enter().append("line")
 	// 		.attr("x1", function(d) { return x(d.start); })
@@ -169,21 +170,24 @@ function update_reads(data) {
 	// 		.delay(function(d, i) { return i * 0.5; })
 	// 		.attr("x2", function(d) { return x(d.end); });
 
+
 	reads.enter().append("line")
 			.attr("class", "read")
-			.attr("x1", function(d) { return x(d.start); })
+			.attr("x1", function(d) { return x(d.start - gene_start); })
 			.attr("y1", function(d) { return height - genemodel_height; })
-			.attr("x2", function(d) { return x(d.end); })
+			.attr("x2", function(d) { return x(d.end - gene_start); })
 			.attr("y2", function(d) { return height - genemodel_height; })
 			.style("stroke", function(d) { return ((d.read1 == "True") ? rcolors[0] : rcolors[1]); })
-			.style("stroke-width", "2")
+			.style("stroke-width", "4")
 			.style("opacity", "0")
 		.transition()
-			.duration(300)
-			.delay(function(d, i) { return i * 3; })
+			.duration(200)
+			.delay(function(d, i) { return i * 1; })
 			.attr("y1", function(d) { return y(d.h); })
 			.attr("y2", function(d) { return y(d.h); })
 			.style("opacity", "1")
+	
+	reads.exit().remove();
 
 	reset_axes();	
 }
@@ -191,9 +195,7 @@ function update_reads(data) {
 /* ANALYZE GENEMODEL */
 function decode_genemodel(error, data) {
 	// data.forEach(stacker);
-	// console.log(data);
 
-	// x.domain([0, 2000]);
 	update_genemodel(data);
 }
 
@@ -338,7 +340,10 @@ search.onEnter = function() {
 			gene_start = gene_model_index[i].start;
 			gene_end = gene_model_index[i].end;
 			gene_name = gene_model_index[i].gene_name;
-			// console.log('found');
+			
+			console.log('found' + ' ' + 
+									gene_model_index[i].start + ' ' + gene_model_index[i].end + ' ' +
+									gene_model_index[i].chrom);
 			break;
 		}
 	}
@@ -350,6 +355,8 @@ search.onEnter = function() {
 	} else {
 		alert('No gene found with name: ' + text);
 	}
+
+	d3.tsv('data/genes/' + gene_name + 'reads.tsv', decode_reads);
 }
 
 setTimeout(function() {	search.input.focus(); },0);
@@ -362,7 +369,7 @@ var files = ['data/seq1.tsv', 'data/seq2.tsv'],
 
 
 
-d3.tsv('data/reads/seq1.reads.tsv', decode_reads);
 d3.tsv('data/gene_model_index', decode_geneindex);
-d3.tsv('data/pileups/seq1.tsv', decode_pileups);
+// d3.tsv('data/pileups/seq1.tsv', decode_pileups);
+
 resize();
