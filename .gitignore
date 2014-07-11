@@ -1,2 +1,3 @@
 # dont upload that .gff files
 *.gff
+*.tsv

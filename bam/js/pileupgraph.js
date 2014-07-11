@@ -105,8 +105,11 @@ function unhighlight(div) {
 }
 
 
-var files = ['data/seq1.tsv', 'data/seq2.tsv'],
+var files = ['data/pileups/seq1.tsv', 'data/pileups/seq2.tsv'],
     file_index = 0;
 for(var i = 0;i < files.length;i++) {
   d3.tsv(files[i], decode);
 }
+
+
+console.log('okay');

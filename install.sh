@@ -1,19 +1,20 @@
 #!/usr/bin/bash
-#
+#!/bin/bash
 # install script to install fastqc, samtools, 
 
 use warnings;
 use strict;
 
-
 echo "Hello stranger. Ready to install here?"
-
 mkdir install
 cd install
-sudo apt-get install zlib1g-dev zlib1g build-essential make cmake g++ -y
 
+echo "installing build tools"
+sudo apt-get install zlib1g-dev zlib1g build-essential make cmake g++ -y
+echo "installing genomic software"
 sudo apt-get install tophat fastqc cufflinks samtools -y
 
+echo "installing bamtools"
 git clone git://github.com/pezmaster31/bamtools.git
 cd bamtools
 mkdir build
@@ -21,12 +22,6 @@ cd build
 cmake --version
 cmake ..
 make
-
-
-
-
-
-
 
 # DOWNLOADS
 # samtools

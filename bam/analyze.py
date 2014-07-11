@@ -13,8 +13,7 @@ class Counter:
 			self.lis[i] += 1
 
 
-def analyze_pileups(s):
-    # for i in range(len(s.lengths)):
+def analyze_pileups_rname(s):
     for i in range(10):
 		print 'analyzing pileup %s...' % s.getrname(i)
 		pileup = s.pileup(s.getrname(i), 10, int(s.lengths[i]))
@@ -26,6 +25,24 @@ def analyze_pileups(s):
 				out.writerow([pile.n])
 		print 'DONE'
 		sys.stdout.flush()
+
+"""filter reads based on where this gene starts and ends"""
+def analyze_reads_from_start(s, start, end, gene, chrom):
+	with open('data/genes/' + gene + 'reads.tsv', 'wb') as out:
+		out = csv.writer(out, delimiter='\t')
+		out.writerow(['start', 'end', 'read1'])
+	
+	alns = s.fetch(chrom, 0, s.lengths[s.gettid(chrom)])
+	for aln in alns:
+		if aln.pos > start and aln.pos < end:
+			with open('data/genes/' + gene + 'reads.tsv', 'a') as out:
+				out = csv.writer(out, delimiter='\t')
+				out.writerow([aln.pos, aln.pos + aln.qlen, aln.is_read1])
+				
+				print "\033[A                                       \033[A"
+				print 'found read @ %d' % aln.pos
+				sys.stdout.flush()
+
 
 def analyze_reads(s):
 	for i in range(len(s.lengths)):
@@ -109,10 +126,24 @@ def main():
 	s = pysam.Samfile('/media/Data/Downloads/real/accepted_hits_2_old.bam', 'rb')
 	print 'loaded'
 	sys.stdout.flush()
-	analyze_pileups(s)
-	# analyze_reads(s)
 	
 
+
+	with open('data/gene_model_index', 'r') as f:
+		for line in f.readlines()[1:]:
+			vals = line.split('\t')
+			print vals[2].strip(), vals[3].strip(), vals[1].strip(), vals[5].strip()
+			print ''
+			analyze_reads_from_start(s, int(vals[2].strip()), 
+										int(vals[3].strip()), 
+										vals[1].strip(), 
+										vals[5].strip())
+
+	# analyze_reads_from_start(s, 600803, 635338, 'ADNP2', 1)
+	# for i in range(len(s.lengths)):
+	# print s.getrname(i)
+	# analyze_reads(s)
+	
 	# print 'loading.....',
 	# gff = pybedtools.BedTool('../latest_dog_genes.gff')
 	# print 'loaded'
