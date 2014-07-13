@@ -1,0 +1,5 @@
+start	end	type
+42689	43619	CDS
+42689	43622	exon
+42689	42692	start_codon
+43619	43622	stop_codon

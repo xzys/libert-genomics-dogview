@@ -1,0 +1,9 @@
+start	end	type
+18470	18741	exon
+18470	18473	stop_codon
+18473	18741	CDS
+18799	19146	CDS
+18799	19146	exon
+19739	20120	CDS
+19739	20120	exon
+20117	20120	start_codon

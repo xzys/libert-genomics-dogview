@@ -1,0 +1,9 @@
+start	end	type
+1282	1491	CDS
+1282	1491	exon
+1282	1285	start_codon
+6778	6893	CDS
+6778	6893	exon
+7050	7221	CDS
+7050	7224	exon
+7221	7224	stop_codon

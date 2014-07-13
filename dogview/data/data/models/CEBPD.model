@@ -1,0 +1,7 @@
+start	end	type
+74993	75163	CDS
+74993	75163	exon
+74993	74996	start_codon
+76845	77524	CDS
+76845	77816	exon
+77524	77527	stop_codon

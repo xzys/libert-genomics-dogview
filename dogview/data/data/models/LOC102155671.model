@@ -1,0 +1,7 @@
+start	end	type
+221	569	CDS
+221	569	exon
+221	224	start_codon
+1804	1864	CDS
+1804	1867	exon
+1864	1867	stop_codon

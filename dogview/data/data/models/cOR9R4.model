@@ -1,0 +1,5 @@
+start	end	type
+21952	22885	CDS
+21952	22888	exon
+21952	21955	start_codon
+22885	22888	stop_codon

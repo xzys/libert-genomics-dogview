@@ -1,0 +1,5 @@
+start	end	type
+837	2363	exon
+1015	2122	CDS
+1015	1018	start_codon
+2122	2125	stop_codon

@@ -1,0 +1,7 @@
+start	end	type
+16320	16398	CDS
+16320	16398	exon
+16320	16323	start_codon
+21842	24187	CDS
+21842	24190	exon
+24187	24190	stop_codon

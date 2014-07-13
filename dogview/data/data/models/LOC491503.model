@@ -1,0 +1,9 @@
+start	end	type
+7419	7819	exon
+7571	7819	CDS
+7571	7574	start_codon
+12285	12400	CDS
+12285	12400	exon
+12556	12727	CDS
+12556	12730	exon
+12727	12730	stop_codon

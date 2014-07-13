@@ -1,0 +1,5 @@
+start	end	type
+450348	451284	exon
+450348	450351	stop_codon
+450351	451284	CDS
+451281	451284	start_codon

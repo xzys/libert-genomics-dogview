@@ -1,0 +1,6 @@
+start	end	type
+9531	9726	CDS
+9531	9726	exon
+10228	10337	CDS
+10228	10443	exon
+10334	10337	start_codon

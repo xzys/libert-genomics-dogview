@@ -1,0 +1,5 @@
+start	end	type
+420	1695	exon
+915	918	stop_codon
+918	1620	CDS
+1617	1620	start_codon

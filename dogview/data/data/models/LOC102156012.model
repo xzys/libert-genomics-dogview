@@ -1,0 +1,5 @@
+start	end	type
+345543	346482	exon
+345543	345546	stop_codon
+345546	346482	CDS
+346479	346482	start_codon

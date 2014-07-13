@@ -1,0 +1,7 @@
+start	end	type
+8774	9247	exon
+8774	8777	stop_codon
+8777	9247	CDS
+10068	10344	CDS
+10068	10344	exon
+10341	10344	start_codon

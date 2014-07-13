@@ -1,0 +1,4 @@
+start	end	type
+1244794	1245108	CDS
+1244794	1245728	exon
+1245105	1245108	start_codon

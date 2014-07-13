@@ -1,0 +1,4 @@
+start	end	type
+5074064	5074117	CDS
+5074064	5074150	exon
+5074117	5074120	stop_codon

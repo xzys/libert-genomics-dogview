@@ -1,0 +1,9 @@
+start	end	type
+315	941	exon
+854	941	CDS
+854	857	start_codon
+1181	1357	CDS
+1181	1357	exon
+5818	6008	CDS
+5818	6011	exon
+6008	6011	stop_codon

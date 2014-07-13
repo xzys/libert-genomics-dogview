@@ -1,0 +1,5 @@
+start	end	type
+8491	9331	CDS
+8491	9334	exon
+8491	8494	start_codon
+9331	9334	stop_codon

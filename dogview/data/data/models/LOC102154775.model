@@ -1,0 +1,9 @@
+start	end	type
+9672	10624	CDS
+9672	10624	exon
+9672	9675	start_codon
+10900	10995	CDS
+10900	10995	exon
+11177	11222	CDS
+11177	11225	exon
+11222	11225	stop_codon

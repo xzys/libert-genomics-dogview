@@ -1,0 +1,5 @@
+start	end	type
+426975	427908	CDS
+426975	427911	exon
+426975	426978	start_codon
+427908	427911	stop_codon

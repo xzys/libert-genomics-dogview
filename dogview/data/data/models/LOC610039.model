@@ -1,0 +1,5 @@
+start	end	type
+72169	73117	CDS
+72169	73120	exon
+72169	72172	start_codon
+73117	73120	stop_codon

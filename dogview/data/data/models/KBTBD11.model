@@ -1,0 +1,7 @@
+start	end	type
+49254	53533	exon
+52624	52627	stop_codon
+52627	53533	CDS
+54427	54973	CDS
+54427	55324	exon
+54970	54973	start_codon

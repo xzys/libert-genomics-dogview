@@ -1,0 +1,7 @@
+start	end	type
+16745	16815	CDS
+16745	16815	exon
+16745	16748	start_codon
+20163	20303	CDS
+20163	20306	exon
+20303	20306	stop_codon

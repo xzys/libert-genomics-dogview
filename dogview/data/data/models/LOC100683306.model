@@ -1,0 +1,5 @@
+start	end	type
+41359	42316	CDS
+41359	42319	exon
+41359	41362	start_codon
+42316	42319	stop_codon

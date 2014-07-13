@@ -1,0 +1,5 @@
+start	end	type
+639802	640183	CDS
+639802	640219	exon
+639802	639805	start_codon
+640183	640186	stop_codon

@@ -1,0 +1,7 @@
+start	end	type
+33999	34008	CDS
+33999	34008	exon
+33999	34002	start_codon
+37209	37848	CDS
+37209	37851	exon
+37848	37851	stop_codon

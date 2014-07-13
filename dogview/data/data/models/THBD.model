@@ -1,0 +1,5 @@
+start	end	type
+599772	601649	exon
+599815	601549	CDS
+599815	599818	start_codon
+601549	601552	stop_codon

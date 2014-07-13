@@ -1,0 +1,5 @@
+start	end	type
+223006	223942	CDS
+223006	223945	exon
+223006	223009	start_codon
+223942	223945	stop_codon

@@ -1,0 +1,4 @@
+start	end	type
+7380166	7380203	CDS
+7380166	7380310	exon
+7380200	7380203	start_codon

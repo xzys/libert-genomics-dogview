@@ -1,0 +1,16 @@
+start	end	type
+333	439	exon
+1336	1446	exon
+2365	2521	exon
+2501	2521	CDS
+2501	2504	start_codon
+4086	4210	CDS
+4086	4210	exon
+5172	5275	CDS
+5172	5275	exon
+5646	5750	CDS
+5646	5750	exon
+6035	6041	CDS
+6035	6077	exon
+6041	6044	stop_codon
+6481	7517	exon

@@ -1,0 +1,4 @@
+start	end	type
+6047013	6047094	CDS
+6047013	6048938	exon
+6047094	6047097	stop_codon

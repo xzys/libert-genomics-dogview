@@ -1,0 +1,7 @@
+start	end	type
+44220	49590	exon
+47772	47775	stop_codon
+47775	49590	CDS
+52605	52716	CDS
+52605	52716	exon
+52713	52716	start_codon

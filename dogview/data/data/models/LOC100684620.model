@@ -1,0 +1,6 @@
+start	end	type
+669919	670924	exon
+669919	669922	stop_codon
+669922	670891	CDS
+670888	670891	start_codon
+680844	680879	exon

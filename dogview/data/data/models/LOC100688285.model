@@ -1,0 +1,9 @@
+start	end	type
+36632	37711	exon
+36710	36713	stop_codon
+36713	37711	CDS
+38049	38542	CDS
+38049	38542	exon
+48179	48209	CDS
+48179	48209	exon
+48206	48209	start_codon

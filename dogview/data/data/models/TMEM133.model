@@ -1,0 +1,5 @@
+start	end	type
+597311	598745	exon
+598510	598513	stop_codon
+598513	598745	CDS
+598742	598745	start_codon

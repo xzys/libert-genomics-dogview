@@ -1,0 +1,4 @@
+start	end	type
+1875268	1875849	CDS
+1875268	1876244	exon
+1875846	1875849	start_codon

@@ -1,0 +1,17 @@
+start	end	type
+861	1778	exon
+861	1778	exon
+861	2572	exon
+2539	2572	exon
+2906	3368	exon
+2906	3368	exon
+2906	3368	exon
+2915	2918	stop_codon
+2915	2918	stop_codon
+2915	2918	stop_codon
+2918	3296	CDS
+2918	3296	CDS
+2918	3296	CDS
+3293	3296	start_codon
+3293	3296	start_codon
+3293	3296	start_codon

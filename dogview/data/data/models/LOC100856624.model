@@ -1,0 +1,5 @@
+start	end	type
+14409	15012	CDS
+14409	15015	exon
+14409	14412	start_codon
+15012	15015	stop_codon

@@ -1,0 +1,7 @@
+start	end	type
+1468	2223	exon
+2196	2223	CDS
+2196	2199	start_codon
+3084	3330	CDS
+3084	4088	exon
+3330	3333	stop_codon

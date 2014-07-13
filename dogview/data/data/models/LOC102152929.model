@@ -1,0 +1,5 @@
+start	end	type
+732300	732897	exon
+732300	732303	stop_codon
+732303	732897	CDS
+732894	732897	start_codon

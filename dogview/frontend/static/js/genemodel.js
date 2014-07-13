@@ -19,7 +19,8 @@ var yAxis = d3.svg.axis()
 var gene_model_index,
 		gene_name = '',
 		gene_start = 0,
-		gene_end = 0;
+		gene_end = 0,
+		gene_chrom = '';
 ;
 
 var lines = [],
@@ -278,6 +279,8 @@ function decode_geneindex(error, data) {
 	});
 
 	gene_model_index = data;
+	console.log('loadthisbitch');
+	console.log(data);
 }
 
 
@@ -348,6 +351,7 @@ search.onEnter = function() {
 			gene_start = gene_model_index[i].start;
 			gene_end = gene_model_index[i].end;
 			gene_name = gene_model_index[i].gene_name;
+			gene_chrom = gene_model_index[i].crom;
 			
 			// console.log('found' + ' ' + 
 			// 						gene_model_index[i].start + ' ' + gene_model_index[i].end + ' ' +
@@ -364,19 +368,17 @@ search.onEnter = function() {
 		alert('No gene found with name: ' + text);
 	}
 
-	d3.tsv('data/genes/' + gene_name + 'reads.tsv', decode_reads);
-	// d3.tsv('data/genes/ANXA1reads.tsv', decode_reads);
-	console.log('asda');
-	// d3.tsv('data/genes/ADNP2reads.tsv', decode_reads);
+	console.log('api/reads/?start=' + gene_start +
+							';end=' + gene_end + 
+							';name=' + gene_start +
+							';chrom=' + gene_chrom)
+
+
+	// d3.tsv('api/reads/?start=%d;end=%d;name=%s;chrom=%s;' 
+					// .format(gene_start, gene_end, gene_name, gene_chrom), decode_reads);
+	// d3.tsv('data/genes/' + gene_name + 'reads.tsv', decode_reads);
 }
 
-setTimeout(function() {	search.input.focus(); },0);
-
-
-
-/* INITIAL DATA */
-var files = ['data/seq1.tsv', 'data/seq2.tsv'],
-    file_index = 0;
-
-d3.tsv('data/gene_model_index', decode_geneindex);
+d3.tsv("static/data/gene_model_index", decode_geneindex);
 resize();
+search.input.focus();
