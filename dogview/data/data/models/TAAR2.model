@@ -1,5 +1,0 @@
-start	end	type
-14375	15374	exon
-14415	15371	CDS
-14415	14418	start_codon
-15371	15374	stop_codon

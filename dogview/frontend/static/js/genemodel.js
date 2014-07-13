@@ -149,7 +149,7 @@ function decode_reads(error, data) {
 	// make pileup
 	data.forEach(stacker);
 
-	console.log(gene_start + ' ' + gene_end);
+	// console.log(gene_start + ' ' + gene_end);
 
 	x.domain([0, gene_end - gene_start]);
 	y.domain([0, Math.max(100, d3.max(data, function(d) { return d.h; }))]);
@@ -279,8 +279,6 @@ function decode_geneindex(error, data) {
 	});
 
 	gene_model_index = data;
-	console.log('loadthisbitch');
-	console.log(data);
 }
 
 
@@ -351,7 +349,7 @@ search.onEnter = function() {
 			gene_start = gene_model_index[i].start;
 			gene_end = gene_model_index[i].end;
 			gene_name = gene_model_index[i].gene_name;
-			gene_chrom = gene_model_index[i].crom;
+			gene_chrom = gene_model_index[i].chrom;
 			
 			// console.log('found' + ' ' + 
 			// 						gene_model_index[i].start + ' ' + gene_model_index[i].end + ' ' +
@@ -362,7 +360,7 @@ search.onEnter = function() {
 
 	if(gene_end != null) {
 		x.domain([0, gene_end - gene_start]);
-		d3.tsv('data/models/' + text + '.model', decode_genemodel);
+		d3.tsv('static/data/models/' + text + '.model', decode_genemodel);
 		
 	} else {
 		alert('No gene found with name: ' + text);
@@ -370,12 +368,14 @@ search.onEnter = function() {
 
 	console.log('api/reads/?start=' + gene_start +
 							';end=' + gene_end + 
-							';name=' + gene_start +
-							';chrom=' + gene_chrom)
+							';name=' + gene_name +
+							';chrom=' + gene_chrom);
 
 
-	// d3.tsv('api/reads/?start=%d;end=%d;name=%s;chrom=%s;' 
-					// .format(gene_start, gene_end, gene_name, gene_chrom), decode_reads);
+	d3.tsv('api/reads/?start=' + gene_start +
+				 ';end=' + gene_end + 
+				 ';name=' + gene_name +
+				 ';chrom=' + gene_chrom, decode_reads);
 	// d3.tsv('data/genes/' + gene_name + 'reads.tsv', decode_reads);
 }
 

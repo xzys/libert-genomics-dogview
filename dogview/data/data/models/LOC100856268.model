@@ -1,7 +1,0 @@
-start	end	type
-21487	22277	exon
-21489	22277	CDS
-21489	21492	start_codon
-22522	22535	CDS
-22522	22810	exon
-22535	22538	stop_codon

@@ -1,7 +1,0 @@
-start	end	type
-5138	5989	CDS
-5138	5989	exon
-5138	5141	start_codon
-11406	11617	CDS
-11406	11620	exon
-11617	11620	stop_codon

@@ -1,7 +1,0 @@
-start	end	type
-1752	1787	exon
-1752	1755	stop_codon
-1755	1787	CDS
-2895	4615	CDS
-2895	4707	exon
-4612	4615	start_codon
