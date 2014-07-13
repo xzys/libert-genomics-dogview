@@ -1,0 +1,9 @@
+start	end	type
+73174	73687	exon
+73174	73177	stop_codon
+73177	73687	CDS
+73739	74371	CDS
+73739	74371	exon
+74845	74909	CDS
+74845	74909	exon
+74906	74909	start_codon

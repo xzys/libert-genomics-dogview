@@ -1,0 +1,5 @@
+start	end	type
+1095	1698	CDS
+1095	1740	exon
+1095	1098	start_codon
+1698	1701	stop_codon

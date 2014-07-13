@@ -1,0 +1,9 @@
+start	end	type
+8205	8392	exon
+8205	8208	stop_codon
+8208	8392	CDS
+25131	25225	CDS
+25131	25225	exon
+25641	25759	CDS
+25641	25850	exon
+25756	25759	start_codon

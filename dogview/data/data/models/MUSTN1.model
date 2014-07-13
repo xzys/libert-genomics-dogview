@@ -1,0 +1,9 @@
+start	end	type
+5274	5464	exon
+5455	5464	CDS
+5455	5458	start_codon
+6538	6671	CDS
+6538	6671	exon
+6848	6952	CDS
+6848	7150	exon
+6952	6955	stop_codon

@@ -1,0 +1,9 @@
+start	end	type
+10528	10582	CDS
+10528	10582	exon
+10528	10531	start_codon
+20520	21827	CDS
+20520	21827	exon
+22282	23420	CDS
+22282	23423	exon
+23420	23423	stop_codon

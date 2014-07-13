@@ -1,0 +1,5 @@
+start	end	type
+235784	236720	CDS
+235784	236723	exon
+235784	235787	start_codon
+236720	236723	stop_codon

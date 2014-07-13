@@ -1,0 +1,7 @@
+start	end	type
+25239	25424	exon
+25247	25424	CDS
+25247	25250	start_codon
+26693	26918	CDS
+26693	28148	exon
+26918	26921	stop_codon

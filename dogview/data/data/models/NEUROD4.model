@@ -1,0 +1,6 @@
+start	end	type
+388642	390099	exon
+389094	389097	stop_codon
+389097	390090	CDS
+390087	390090	start_codon
+396291	396317	exon

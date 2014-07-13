@@ -1,0 +1,11 @@
+start	end	type
+9976	10166	exon
+9976	12084	exon
+10071	10074	stop_codon
+10071	10074	stop_codon
+10074	10166	CDS
+10074	12012	CDS
+10625	12012	CDS
+10625	12084	exon
+12009	12012	start_codon
+12009	12012	start_codon

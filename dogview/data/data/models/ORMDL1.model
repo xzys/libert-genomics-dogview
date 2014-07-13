@@ -1,0 +1,4 @@
+start	end	type
+521414	521518	CDS
+521414	521526	exon
+521515	521518	start_codon

@@ -1,0 +1,5 @@
+start	end	type
+410671	411640	CDS
+410671	411643	exon
+410671	410674	start_codon
+411640	411643	stop_codon

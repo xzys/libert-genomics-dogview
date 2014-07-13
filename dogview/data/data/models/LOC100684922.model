@@ -1,0 +1,5 @@
+start	end	type
+21433	22342	CDS
+21433	22345	exon
+21433	21436	start_codon
+22342	22345	stop_codon

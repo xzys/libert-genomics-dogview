@@ -1,0 +1,5 @@
+start	end	type
+305015	305975	exon
+305015	305018	stop_codon
+305018	305957	CDS
+305954	305957	start_codon

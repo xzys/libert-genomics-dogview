@@ -1,0 +1,7 @@
+start	end	type
+63071	63214	exon
+63209	63214	CDS
+63209	63212	start_codon
+68430	69829	CDS
+68430	71728	exon
+69829	69832	stop_codon

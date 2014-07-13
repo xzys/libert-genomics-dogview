@@ -1,0 +1,5 @@
+start	end	type
+238	1454	exon
+369	372	stop_codon
+372	1314	CDS
+1311	1314	start_codon

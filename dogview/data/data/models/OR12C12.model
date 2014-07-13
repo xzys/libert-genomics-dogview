@@ -1,0 +1,5 @@
+start	end	type
+893	1832	exon
+893	896	stop_codon
+896	1832	CDS
+1829	1832	start_codon

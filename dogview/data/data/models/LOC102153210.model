@@ -1,0 +1,7 @@
+start	end	type
+1300	1840	exon
+1312	1840	CDS
+1312	1315	start_codon
+9675	9678	CDS
+9675	9942	exon
+9678	9681	stop_codon

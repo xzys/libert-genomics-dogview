@@ -1,0 +1,10 @@
+start	end	type
+331	438	exon
+331	334	stop_codon
+334	438	CDS
+5212	5301	CDS
+5212	5301	exon
+5954	6050	CDS
+5954	6213	exon
+6047	6050	start_codon
+9049	9071	exon

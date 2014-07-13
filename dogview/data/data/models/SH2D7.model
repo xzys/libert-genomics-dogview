@@ -1,0 +1,7 @@
+start	end	type
+6	1415	exon
+851	1415	CDS
+851	854	start_codon
+2517	2565	CDS
+2517	3584	exon
+2565	2568	stop_codon

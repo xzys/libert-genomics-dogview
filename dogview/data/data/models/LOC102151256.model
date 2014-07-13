@@ -1,0 +1,9 @@
+start	end	type
+6405	6611	CDS
+6405	6611	exon
+6405	6408	start_codon
+7989	8088	CDS
+7989	8088	exon
+18771	18916	CDS
+18771	18919	exon
+18916	18919	stop_codon

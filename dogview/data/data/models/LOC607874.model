@@ -1,0 +1,9 @@
+start	end	type
+49561	49896	exon
+49812	49815	stop_codon
+49815	49896	CDS
+50636	50750	CDS
+50636	50750	exon
+53241	53505	CDS
+53241	53634	exon
+53502	53505	start_codon

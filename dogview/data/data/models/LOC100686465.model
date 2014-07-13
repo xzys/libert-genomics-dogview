@@ -1,0 +1,5 @@
+start	end	type
+40636	41575	exon
+40636	40639	stop_codon
+40639	41575	CDS
+41572	41575	start_codon

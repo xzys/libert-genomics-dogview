@@ -1,0 +1,4 @@
+start	end	type
+8190208	8190229	CDS
+8190208	8190736	exon
+8190226	8190229	start_codon

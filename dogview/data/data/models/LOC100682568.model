@@ -1,0 +1,5 @@
+start	end	type
+611586	612550	CDS
+611586	612553	exon
+611586	611589	start_codon
+612550	612553	stop_codon

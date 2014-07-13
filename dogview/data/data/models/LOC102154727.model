@@ -1,0 +1,5 @@
+start	end	type
+363	1128	CDS
+363	1131	exon
+363	366	start_codon
+1128	1131	stop_codon
