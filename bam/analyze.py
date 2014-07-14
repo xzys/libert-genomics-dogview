@@ -2,6 +2,7 @@ import pysam
 import pybedtools
 import csv
 import time, sys
+import StringIO
 
 class Counter:
 	def __init__(self, length):
@@ -16,7 +17,7 @@ class Counter:
 def analyze_pileups_rname(s):
     for i in range(10):
 		print 'analyzing pileup %s...' % s.getrname(i)
-		pileup = s.pileup(s.getrname(i), 10, int(s.lengths[i]))
+		pileup = s.pileup(s.getrname(i), 0, int(s.lengths[i]))
 
 		with open('data/pileups/' + s.getrname(i) + '.tsv', 'wb') as out:
 			out = csv.writer(out, delimiter='\t')
@@ -25,6 +26,32 @@ def analyze_pileups_rname(s):
 				out.writerow([pile.n])
 		print 'DONE'
 		sys.stdout.flush()
+
+
+
+"""filter reads based on where this gene starts and ends"""
+def analyze_pileups_from_start(specimen, start, end, gene, chrom):
+	s = pysam.Samfile('/media/Data/Downloads/real/' + specimen, 'rb')
+
+	# use temporary file instead of saving
+	temp = StringIO.StringIO()
+	out = csv.writer(temp, delimiter='\t')
+	out.writerow(['n'])
+
+	piles = s.pileup(chrom, start, end)
+	print 'starting'
+	
+	for pile in piles:
+		out.writerow([pile.n])
+
+	return temp.getvalue()
+	# temp.close()
+
+
+
+
+
+
 
 """filter reads based on where this gene starts and ends"""
 def analyze_reads_from_start(s, start, end, gene, chrom):
@@ -122,22 +149,20 @@ def split_gff(feature, cur_gene, total):
 	cur_gene['num'] += 1
 
 def main():
-	print 'loading...',
-	s = pysam.Samfile('/media/Data/Downloads/real/accepted_hits_2_old.bam', 'rb')
-	print 'loaded'
-	sys.stdout.flush()
+	# print 'loading...',
+	# s = pysam.Samfile('/media/Data/Downloads/real/accepted_hits_2_old.bam', 'rb')
+	# print 'loaded'
+	# sys.stdout.flush()
 	
-
-
-	with open('data/gene_model_index', 'r') as f:
-		for line in f.readlines()[1:]:
-			vals = line.split('\t')
-			print vals[2].strip(), vals[3].strip(), vals[1].strip(), vals[5].strip()
-			print ''
-			analyze_reads_from_start(s, int(vals[2].strip()), 
-										int(vals[3].strip()), 
-										vals[1].strip(), 
-										vals[5].strip())
+	# with open('data/gene_model_index', 'r') as f:
+	# 	for line in f.readlines()[1:]:
+	# 		vals = line.split('\t')
+	# 		print vals[2].strip(), vals[3].strip(), vals[1].strip(), vals[5].strip()
+	# 		print ''
+	# 		analyze_reads_from_start(s, int(vals[2].strip()), 
+	# 									int(vals[3].strip()), 
+	# 									vals[1].strip(), 
+	# 									vals[5].strip())
 
 	# analyze_reads_from_start(s, 600803, 635338, 'ADNP2', 1)
 	# for i in range(len(s.lengths)):
@@ -148,6 +173,11 @@ def main():
 	# gff = pybedtools.BedTool('../latest_dog_genes.gff')
 	# print 'loaded'
 	# analyze_genemodel(gff)
+
+
+
+	fo = analyze_pileups_from_start('accepted_hits_2_old.bam', 600803, 635338, 'bs', '1')
+
 
 
 if __name__ == '__main__':

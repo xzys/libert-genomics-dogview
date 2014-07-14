@@ -18,11 +18,6 @@ body {
   stroke-width: 1.5px;
 }
 
-.index {
-  position: absolute;
-  top:40px;
-  right:40px;
-}
 
 .index div {
   display: block;
@@ -49,15 +44,26 @@ div.tooltip {
   pointer-events: none;     
 }
 
-#searchbox, form {
+
+.inputbox,
+form {
   position: relative;
-  left: 50px;
-  width: 100px;
+  margin-left: 20px;
   padding: 7px;
+
+
 }
 
-#searchbox {
+.inputbox {
   background: #eee;
   border: 1px solid;
+  float: left;
+}
 
+.specimen {
+  padding: 2px;
+  margin-right: 1px;
+  margin-bottom: 1px;
+  background: tomato;
+  float: left;
 }

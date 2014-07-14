@@ -2,26 +2,32 @@
 <meta charset="utf-8">
 {% load staticfiles %}
 <head>
+  <script src="{% static 'js/pace.min.js' %}"></script>
+  <link href="{% static 'css/dataurl.css' %}" rel="stylesheet">
   <link href="{% static 'css/app.css' %}" rel="stylesheet">
 </head>
 <body>
-  <form id="form-container">
-    <!-- <select onchange="">
-      <option value="dog1">dog1</option>
-      <option value="dog2">dog2</option>
-      <option value="dog3">dog3</option>
-      <option value="dog4">dog4</option>
-    </select> -->
-  </form>
-  
-  <div id="searchbox" >
-    <span>search gene:</span>
+   <div id="inputbox-container" >
+    <div class="inputbox" id="searchbox" style="margin-left: 50px;">
+      <span>search gene:</span>
+    </div>
+
+    <div class="inputbox">
+      <span>select specimen:</span>
+      <div>
+        <div class="specimen">accepted_hits_2_old.bam</div>
+      </div>
+    </div>  
   </div>
+
+
+
   
   <div id="svg-container"></div>
 
   <script src="{% static 'js/d3.v3.min.js' %}"></script>
   <script src="{% static 'js/complete.ly.1.0.1.min.js' %}"></script>
+  
 
   <!-- <script src="{% static 'js/pileupgraph.js' %}"></script> -->
   <!-- <script src="{% static 'js/readsgraph.js' %}"></script> -->

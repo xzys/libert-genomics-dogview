@@ -16,13 +16,6 @@ var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left");
 
-var gene_model_index,
-		gene_name = '',
-		gene_start = 0,
-		gene_end = 0,
-		gene_chrom = '';
-;
-
 var lines = [],
     line = d3.svg.line()
     .x(function(d) { return x(d.i); })
@@ -59,12 +52,12 @@ svg.append("rect")
 		.attr("y", height - genemodel_height + 20)
 		.style("fill", rcolors[4]);
 
-var index = d3.select("body").append("div")
-    .attr("class", "index")
-  .append("div")
-    .attr("stroke", "#fff")
-    .attr("onmouseover", "unhighlight(this)")
-    .html("clear")
+// var index = d3.select(".inputbox-container").append("div")
+//     .attr("class", "inputbox")
+//   .append("div")
+//     .attr("stroke", "#fff")
+//     .attr("onmouseover", "unhighlight(this)")
+//     .html("clear")
 
 
 var tooltip = d3.select("body").append("div")
@@ -82,6 +75,30 @@ function reset_axes() {
 
 var colors = ["steelBlue", "tomato"],
     cindex = 0;
+
+var gene_model_index,
+		gene_name = '',
+		gene_start = 0,
+		gene_end = 0,
+		gene_chrom = '';
+
+var specimen_name = 'accepted_hits_2_old.bam';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* algorithm for stacking reads on top of reach other so they don't colide */
@@ -109,39 +126,57 @@ function stacker(d, i, data) {
 
 /* ANALYZE PILEUPS */
 function decode_pileups(error, data) {
-	var i = 0;
-  data.forEach(function(d) {
-    d.i = i++;
+  data.forEach(function(d, i) {
+    d.i = i;
   });
-  
-	// naw
+ 	// console.log(data);
 	update_pileups(data);
 };
 
 function update_pileups(data) {
-	// add line
-	var fn = files[file_index].match(/.+\/(.+)\.tsv/)[1];
+	// d3.select(".index").append("div")
+	//      .style("background-color", colors[cindex % colors.length])
+	//      .attr("onmouseover", "highlight(this)")
+	//      .text(specimen_name);
 
+	var pileups = svg.selectAll('.pileup').data(data);
 
-	d3.select(".index").append("div")
-      .style("background-color", colors[cindex % colors.length])
-      .attr("onmouseover", "highlight(this)")
-      .text(fn);
+	// pileups.enter().append('path')
+	// 		.datum(data)
+ //      .attr("class", "pileup")
+ //      .attr("id", specimen_name)
+ //      .style("stroke", colors[cindex % colors.length])
+ //      .style("fill", colors[cindex++ % colors.length])
+ //      .attr("d", 
+ //      	d3.svg.area()
+	// 		      .x(function(d) { return x(d.i); })
+	// 		      .y0(height - genemodel_height)
+	// 		      .y1(function(d) { return y(d.n); })
+ //      ); // last line added
 
-  reset_axes();
+ //  pileups.exit().remove();
 
+  y.domain([0, Math.max(100, d3.max(data, function(d) { return d.n; }))]);
+  
   svg.append("path")
       .datum(data)
-      .attr("class", "line")
-      .attr("id", fn)
-      .style("stroke", colors[cindex % colors.length])
-      .style("fill", colors[cindex++ % colors.length])
+      .attr("class", "pileup")
+      .attr("id", specimen_name)
+      .style("stroke", "tomato")
+      .style("stroke-width", "1")
+      .style("fill", "tomato")
+      .style("fill-opacity", '0')
       .attr("d", 
       	d3.svg.area()
 			      .x(function(d) { return x(d.i); })
 			      .y0(height - genemodel_height)
 			      .y1(function(d) { return y(d.n); })
-      ); // last line added
+      )
+    .transition()
+    	.duration(300)
+    	.style("fill-opacity", "0.6");
+
+  reset_axes();
 }
 
 /* ANALYZE READS */
@@ -149,9 +184,6 @@ function decode_reads(error, data) {
 	// make pileup
 	data.forEach(stacker);
 
-	// console.log(gene_start + ' ' + gene_end);
-
-	x.domain([0, gene_end - gene_start]);
 	y.domain([0, Math.max(100, d3.max(data, function(d) { return d.h; }))]);
 
 	update_reads(data);
@@ -161,18 +193,6 @@ function update_reads(data) {
 	svg.selectAll(".read").remove();
 
 	var reads = svg.selectAll(".read").data(data);
-
-	// reads.enter().append("line")
-	// 		.attr("x1", function(d) { return x(d.start); })
-	// 		.attr("y1", function(d) { return y(d.h); })
-	// 		.attr("x2", function(d) { return x(d.start); })
-	// 		.attr("y2", function(d) { return y(d.h); })
-	// 		.style("stroke", function(d) { return ((d.read1 == "True") ? rcolors[0] : rcolors[1]); })
-	// 		.style("stroke-width", "2")
-	// 	.transition().duration(500)
-	// 		.delay(function(d, i) { return i * 0.5; })
-	// 		.attr("x2", function(d) { return x(d.end); });
-
 
 	reads.enter().append("line")
 			.attr("class", "read")
@@ -260,6 +280,7 @@ function update_genemodel(data) {
 			.style("opacity", "0.2")
 			.text(function(d) { return d.type; });
 
+	x.domain([0, gene_end - gene_start]);
 	reset_axes();
 	// .on("mousemove", function(d){
 	// 	return tooltip.style("top", height - genemodel_height + 70 + "px")
@@ -286,13 +307,21 @@ function decode_geneindex(error, data) {
 
 
 
+
+
+
+
+
+
+
+
 /* LISTENERS */
 d3.select(window).on("resize", resize);
 function resize() {
 	// this container will match width of window
 	var container = d3.select("#svg-container");
-	width = parseInt(container.style("width")) - margin.left - margin.right;
 	
+	width = parseInt(container.style("width")) - margin.left - margin.right;
   d3.select("svg").attr("width", parseInt(container.style("width")));
 	x.range([0, width]);
 
@@ -301,19 +330,21 @@ function resize() {
   svg.select(".introns")
   		.attr("width", width);
 
- 	svg.selectAll(".gene-node rect").transition()
+ 	svg.selectAll(".gene-node rect")
  			.attr("width", function(d) { return x(d.end - d.start); })
 			.attr("x", function(d) { return x(d.start - gene_start); });
-  svg.selectAll(".gene-node text").transition()
+  svg.selectAll(".gene-node text")
  			.attr("transform", function(d) {
 				// return "translate(" + (x(d.start - gene_start)) + ", " + (height - genemodel_height + 55 ) + ")"; 
 				return "translate(" + (x(d.start - gene_start)) + ", " + (height - genemodel_height + 55 ) + ")" +
 							 "rotate(90)"; 
 			});
 
- 	svg.selectAll(".read").transition()
-			.attr("x1", function(d) { return x(d.start); })
-			.attr("x2", function(d) { return x(d.end); });
+ 	svg.selectAll(".read")
+			.attr("y1", function(d) { return y(d.h); })
+			.attr("y2", function(d) { return y(d.h); })
+			.attr("x1", function(d) { return x(d.start - gene_start); })
+			.attr("x2", function(d) { return x(d.end - gene_start); });
 }
 
 // highlight the area of this path and not others
@@ -338,7 +369,6 @@ function unhighlight(div) {
 var search = completely(document.getElementById("searchbox"), {
 	display : 'inline',
 	fontSize : '13px',
-
 });
 
 search.onEnter = function() {
@@ -366,19 +396,28 @@ search.onEnter = function() {
 		alert('No gene found with name: ' + text);
 	}
 
-	console.log('api/reads/?start=' + gene_start +
-							';end=' + gene_end + 
-							';name=' + gene_name +
-							';chrom=' + gene_chrom);
+	// d3.tsv('api/reads/?specimen=' + 'accepted_hits_2_old.bam' +
+	// 			 ';start=' + gene_start +
+	// 			 ';end=' + gene_end + 
+	// 			 ';name=' + gene_name +
+	// 			 ';chrom=' + gene_chrom, decode_reads);
 
-
-	d3.tsv('api/reads/?start=' + gene_start +
+	svg.selectAll('.pileup').remove();
+	d3.tsv('api/pileups/?specimen=' + specimen_name +
+				 ';start=' + gene_start +
 				 ';end=' + gene_end + 
 				 ';name=' + gene_name +
-				 ';chrom=' + gene_chrom, decode_reads);
+				 ';chrom=' + gene_chrom, decode_pileups);
+		
+	// before when I was preprocessing them beforehand
 	// d3.tsv('data/genes/' + gene_name + 'reads.tsv', decode_reads);
 }
 
 d3.tsv("static/data/gene_model_index", decode_geneindex);
 resize();
 search.input.focus();
+paceOptions = {
+  ajax: false, // disabled
+  document: true, // disabled
+  eventLag: true, // disabled
+}
