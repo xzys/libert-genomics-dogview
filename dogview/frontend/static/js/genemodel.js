@@ -3,7 +3,16 @@ var margin = {top: 20, right: 20, bottom: 30, left: 50},
     height = 800 - margin.top - margin.bottom,
     genemodel_height = 120;
 
-var rcolors = ["rgb(255, 0, 0)", "rgb(0, 0, 255)", "rgb(100, 100, 100)", "rgb(0, 0, 0)", "#555"];
+var rcolors = ["red",
+							 "blue",
+							 "rgb(100, 100, 100)",
+							 "rgb(0, 0, 0)",
+							 "rgb(150, 150, 150)"];
+
+var colors = ["steelBlue", "tomato"],
+    cindex = 0;
+
+
 
 var x = d3.scale.linear().range([0, width]),
     y = d3.scale.linear().range([height - genemodel_height, 0]);
@@ -61,8 +70,10 @@ svg.append("rect")
 
 
 var tooltip = d3.select("body").append("div")
-	.attr("class", "tooltip")
-	.style("visibility", "hidden");
+		.attr("class", "tooltip")
+		.style("visibility", "hidden");
+
+
 
 function reset_axes() {
 	svg.select(".x.axis")
@@ -73,19 +84,30 @@ function reset_axes() {
       .call(yAxis);
 }
 
-var colors = ["steelBlue", "tomato"],
-    cindex = 0;
-
 var gene_model_index,
 		gene_name = '',
 		gene_start = 0,
 		gene_end = 0,
 		gene_chrom = '';
 
-var specimen_name = 'accepted_hits_2_old.bam';
+var specimens = [
+								 // 'accepted_hits_1_old.bam',
+								 'accepted_hits_2_old.bam',
+								 'accepted_hits_2_old.bam',
+								 // 'accepted_hits_3_young.bam',
+								 // 'accepted_hits_4_young.bam'
+								];
 
-
-
+cindex = 0;
+specimens.forEach(function(s) {
+	d3.select("#specimen-select").append("div")
+			.attr("class", "specimen")
+			.style("background", colors[cindex++ % colors.length])
+			.style("opacity", "0.6")
+			.attr("value", s)
+			.html(s.replace('.bam', '')
+						 .replace('accepted_hits_', ''));
+});
 
 
 
@@ -137,14 +159,14 @@ function update_pileups(data) {
 	// d3.select(".index").append("div")
 	//      .style("background-color", colors[cindex % colors.length])
 	//      .attr("onmouseover", "highlight(this)")
-	//      .text(specimen_name);
+	//      .text(specimens[0]);
 
 	var pileups = svg.selectAll('.pileup').data(data);
 
 	// pileups.enter().append('path')
 	// 		.datum(data)
  //      .attr("class", "pileup")
- //      .attr("id", specimen_name)
+ //      .attr("id", specimens[0])
  //      .style("stroke", colors[cindex % colors.length])
  //      .style("fill", colors[cindex++ % colors.length])
  //      .attr("d", 
@@ -161,10 +183,10 @@ function update_pileups(data) {
   svg.append("path")
       .datum(data)
       .attr("class", "pileup")
-      .attr("id", specimen_name)
-      .style("stroke", "tomato")
+      .attr("id", specimens[0])
+      .style("stroke", colors[cindex % colors.length])
       .style("stroke-width", "1")
-      .style("fill", "tomato")
+      .style("fill", colors[cindex++ % colors.length])
       .style("fill-opacity", '0')
       .attr("d", 
       	d3.svg.area()
@@ -403,7 +425,7 @@ search.onEnter = function() {
 	// 			 ';chrom=' + gene_chrom, decode_reads);
 
 	svg.selectAll('.pileup').remove();
-	d3.tsv('api/pileups/?specimen=' + specimen_name +
+	d3.tsv('api/pileups/?specimen=' + specimens[0] +
 				 ';start=' + gene_start +
 				 ';end=' + gene_end + 
 				 ';name=' + gene_name +
