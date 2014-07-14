@@ -1,7 +1,7 @@
-var margin = {top: 20, right: 20, bottom: 30, left: 50},
+var margin = {top: 20, right: 20, bottom: 10, left: 50},
     width = 1600 - margin.left - margin.right,
-    height = 800 - margin.top - margin.bottom,
-    genemodel_height = 120;
+    height = 200 - margin.top - margin.bottom,
+    genemodel_height = 130;
 
 var rcolors = ["red",
 							 "blue",
@@ -15,7 +15,7 @@ var colors = ["steelBlue", "tomato"],
 
 
 var x = d3.scale.linear().range([0, width]),
-    y = d3.scale.linear().range([height - genemodel_height, 0]);
+    y = d3.scale.linear().range([height, 0]);
 
 var xAxis = d3.svg.axis()
     .scale(x)
@@ -34,32 +34,42 @@ var lines = [],
 /* INITIALIZE SVG STUFF */
 // var svg = d3.select("body").append("svg")
 d3.select("#svg-container").append("svg")
-		.attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
+  	.attr("id", "read-graph")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-var svg = d3.select("svg g");
+var svg = d3.select("#read-graph");
 
-svg.append("g")
+d3.select("#svg-container").append("svg")
+    .attr("height", genemodel_height + margin.top + margin.bottom)
+  .append("g")
+  	.attr("id", "gm-graph")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+var gm_graph = d3.select("#gm-graph");
+
+
+
+gm_graph.append("g")
     .attr("class", "x axis")
-    .attr("transform", "translate(0," + height + ")")
+    .attr("transform", "translate(0," + (genemodel_height - 10) + ")")
     .call(xAxis)
   .append("text")
   	.attr("dy", 16)
   	.attr("dx", 10)
   	.text("bp -- base pairs");
 
-svg.append("g")
-    .attr("class", "y axis")
-    .call(yAxis);
-
-svg.append("rect")
+gm_graph.append("rect")
 		.attr("class", "introns")
 		.attr("width", width)
 		.attr("height", 10)
 		.attr("x", 0)
-		.attr("y", height - genemodel_height + 20)
+		.attr("y", 20)
 		.style("fill", rcolors[4]);
+
+svg.append("g")
+    .attr("class", "y axis")
+    .call(yAxis);
+
 
 // var index = d3.select(".inputbox-container").append("div")
 //     .attr("class", "inputbox")
@@ -76,7 +86,7 @@ var tooltip = d3.select("body").append("div")
 
 
 function reset_axes() {
-	svg.select(".x.axis")
+	gm_graph.select(".x.axis")
       .transition().duration(500)
       .call(xAxis);
 	svg.select(".y.axis")
@@ -146,6 +156,13 @@ function stacker(d, i, data) {
 	d.h = h;
 }
 
+/* because d3's max thing sucks */ 
+function get_actual_max(data, accessor) {
+	var max = 0;
+	data.forEach(function(d) { max = Math.max(d[accessor], max); })
+	return max;
+}
+
 /* ANALYZE PILEUPS */
 function decode_pileups(error, data) {
   data.forEach(function(d, i) {
@@ -178,7 +195,8 @@ function update_pileups(data) {
 
  //  pileups.exit().remove();
 
-  y.domain([0, Math.max(100, d3.max(data, function(d) { return d.n; }))]);
+  // y.domain([0, Math.max(20, d3.max(data, function(d) { return d.n; }))]);
+  y.domain([0, Math.max(20, get_actual_max(data, 'n'))]);
   
   svg.append("path")
       .datum(data)
@@ -191,7 +209,7 @@ function update_pileups(data) {
       .attr("d", 
       	d3.svg.area()
 			      .x(function(d) { return x(d.i); })
-			      .y0(height - genemodel_height)
+			      .y0(height)
 			      .y1(function(d) { return y(d.n); })
       )
     .transition()
@@ -206,8 +224,8 @@ function decode_reads(error, data) {
 	// make pileup
 	data.forEach(stacker);
 
-	y.domain([0, Math.max(100, d3.max(data, function(d) { return d.h; }))]);
-
+	// y.domain([0, Math.max(100, d3.max(data, function(d) { return d.h; }))]);
+	y.domain([0, Math.max(100, get_actual_max(data, 'h'))]);
 	update_reads(data);
 }
 
@@ -220,8 +238,8 @@ function update_reads(data) {
 			.attr("class", "read")
 			.attr("x1", function(d) { return x(d.start - gene_start); })
 			.attr("x2", function(d) { return x(d.end - gene_start); })
-			.attr("y1", function(d) { return height - genemodel_height; })
-			.attr("y2", function(d) { return height - genemodel_height; })
+			.attr("y1", function(d) { return height; })
+			.attr("y2", function(d) { return height; })
 			.style("stroke", function(d) { return ((d.read1 == "True") ? rcolors[0] : rcolors[1]); })
 			.style("stroke-width", "4")
 			.style("opacity", "0")
@@ -252,10 +270,10 @@ function decode_genemodel(error, data) {
 
 function update_genemodel(data) {
 	// clear all first
-	svg.selectAll(".gene-node").remove();
+	gm_graph.selectAll(".gene-node").remove();
 
 	// load new
-	var genes = svg.selectAll("gene-node")
+	var genes = gm_graph.selectAll("gene-node")
 			.data(data)
 			.enter()
 		.append("g")
@@ -276,7 +294,7 @@ function update_genemodel(data) {
 			.attr("width", function(d) { return x(d.end - d.start); })
 			.attr("x", function(d) { return x(d.start - gene_start); })
 			.attr("height", function(d) { return 20; })
-			.attr("y", function(d) { return height - genemodel_height + 15; })
+			.attr("y", function(d) { return 15; })
 			.style("fill", function(d) {
 				switch(d.type) {
 					case 'exon':
@@ -291,12 +309,9 @@ function update_genemodel(data) {
 			});
 	
 	genes.append("text")
-			// .attr("x", function(d) { return x(d.start - gene_start); })
-			// .attr("y", function(d) { return height - genemodel_height + 55 + d.h * 10; })
-			// .attr("y", function(d) { return height - genemodel_height + 55; })
 			.attr("transform", function(d) {
 				// return "translate(" + (x(d.start - gene_start)) + ", " + (height - genemodel_height + 55 ) + ")"; 
-				return "translate(" + (x(d.start - gene_start)) + ", " + (height - genemodel_height + 55 ) + ")" +
+				return "translate(" + (x(d.start - gene_start)) + ", " + 55 + ")" +
 							 "rotate(90)"; 
 			})
 			.style("opacity", "0.2")
@@ -344,21 +359,21 @@ function resize() {
 	var container = d3.select("#svg-container");
 	
 	width = parseInt(container.style("width")) - margin.left - margin.right;
-  d3.select("svg").attr("width", parseInt(container.style("width")));
+  d3.selectAll("svg").attr("width", parseInt(container.style("width")));
 	x.range([0, width]);
 
 	reset_axes();
 
-  svg.select(".introns")
+  gm_graph.select(".introns")
   		.attr("width", width);
 
- 	svg.selectAll(".gene-node rect")
+ 	gm_graph.selectAll(".gene-node rect")
  			.attr("width", function(d) { return x(d.end - d.start); })
 			.attr("x", function(d) { return x(d.start - gene_start); });
-  svg.selectAll(".gene-node text")
+  gm_graph.selectAll(".gene-node text")
  			.attr("transform", function(d) {
 				// return "translate(" + (x(d.start - gene_start)) + ", " + (height - genemodel_height + 55 ) + ")"; 
-				return "translate(" + (x(d.start - gene_start)) + ", " + (height - genemodel_height + 55 ) + ")" +
+				return "translate(" + (x(d.start - gene_start)) + ", " + 55 + ")" +
 							 "rotate(90)"; 
 			});
 
@@ -367,6 +382,14 @@ function resize() {
 			.attr("y2", function(d) { return y(d.h); })
 			.attr("x1", function(d) { return x(d.start - gene_start); })
 			.attr("x2", function(d) { return x(d.end - gene_start); });
+
+	svg.selectAll(".pileup")
+			.attr("d", 
+      	d3.svg.area()
+			      .x(function(d) { return x(d.i); })
+			      .y0(height)
+			      .y1(function(d) { return y(d.n); })
+      )
 }
 
 // highlight the area of this path and not others
@@ -440,6 +463,6 @@ resize();
 search.input.focus();
 paceOptions = {
   ajax: false, // disabled
-  document: true, // disabled
+  document: false, // disabled
   eventLag: true, // disabled
 }
