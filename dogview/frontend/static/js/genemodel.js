@@ -273,6 +273,9 @@ function update_reads(data) {
 /* ANALYZE GENEMODEL */
 function decode_genemodel(error, data) {
 	// data.forEach(stacker);
+	data.forEach(function(d){
+		console.log(d.start + ' ' + d.end + ' ' + d.type);
+	})
 	update_genemodel(data);
 }
 
@@ -344,8 +347,12 @@ function decode_geneindex(error, data) {
 		}
 	});
 
+
 	gene_model_index = data;
 }
+
+
+
 
 
 
@@ -427,6 +434,7 @@ var search = completely(document.getElementById("searchbox"), {
 search.onEnter = function() {
 	var text = search.getText();
 	gene_end = null;
+
 	for(var i=0;i < gene_model_index.length;i++) {
 		if(gene_model_index[i].gene_id == text) {
 			gene_start = gene_model_index[i].start;
@@ -441,7 +449,10 @@ search.onEnter = function() {
 		}
 	}
 
+	console.log(gene_start + ' ' + gene_end);
+
 	if(gene_end != null) {
+	// if(false) {
 		x.domain([0, gene_end - gene_start]);
 		d3.tsv('static/data/models/' + text + '.model', decode_genemodel);
 
