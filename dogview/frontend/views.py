@@ -5,3 +5,4 @@ from django.http import HttpResponse
 def graph(request):
 	# return HttpResponse("Hello, world. You're at the graph.")
 	return render(request, 'frontend/graph.html')
+

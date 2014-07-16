@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+import random
 
 # Create your views here.
 def index(request):
@@ -31,6 +32,23 @@ def pileups(request):
 	except ValueError as e:
 		print e
 		return HttpResponse("bad params dude")
+
+def expressions(request):
+	temp = StringIO.StringIO()
+	out = csv.writer(temp, delimiter='\t')
+	out.writerow(['filename', 'name', 'age', 'expression'])
+
+	with open('/media/Data/Dropbox/Libert/libert-genomics-pipeline/dogview/frontend/static/data/sample_index') as f:
+		lines = f.readlines()
+		
+		for i in range(1, len(lines)):
+			pr = lines[i].split('\t')[:-1]
+			pr.append(random.random() * 10)
+
+			out.writerow(pr)
+
+	return HttpResponse(temp.getvalue())
+
 
 
 

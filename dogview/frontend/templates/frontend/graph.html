@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-{% load staticfiles %}
 <head>
+  {% load staticfiles %}
   <script src="{% static 'js/pace.min.js' %}"></script>
   <link href="{% static 'css/dataurl.css' %}" rel="stylesheet">
   <link href="{% static 'css/app.css' %}" rel="stylesheet">
 </head>
 <body>
-   <div id="inputbox-container" >
+   <div id="inputbox-container">
     <div class="inputbox" id="searchbox" style="margin-left: 50px;">
       <span>search gene:</span>
     </div>
 
     <div class="inputbox">
-      <span>select specimens:</span>
+      <span>select samples:</span>
       <div id="specimen-select">
       </div>
     </div>  
@@ -27,10 +27,6 @@
   <script src="{% static 'js/d3.v3.min.js' %}"></script>
   <script src="{% static 'js/complete.ly.1.0.1.min.js' %}"></script>
   
-
-  <!-- <script src="{% static 'js/pileupgraph.js' %}"></script> -->
-  <!-- <script src="{% static 'js/readsgraph.js' %}"></script> -->
   <script src="{% static 'js/genemodel.js' %}"></script>
-  <script type="text/javascript">
-  </script>
+  
 </body>

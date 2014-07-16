@@ -1,7 +1,8 @@
 var margin = {top: 20, right: 20, bottom: 10, left: 50},
     width = 1600 - margin.left - margin.right,
     height = 200 - margin.top - margin.bottom,
-    genemodel_height = 130;
+    genemodel_height = 130,
+    sm_graph_height = 200;
 
 var rcolors = ["red",
 							 "blue",
@@ -11,6 +12,43 @@ var rcolors = ["red",
 
 var colors = ["steelBlue", "tomato"],
     cindex = 0;
+
+
+
+/* INITIALIZE SVG STUFF */
+// make a graph for each specimen we have loaded
+
+var agex = d3.scale.linear().range([0, width]);
+var exy = d3.scale.linear().range([height, 0]);
+
+var ageAxis = d3.svg.axis()
+    .scale(agex)
+    .orient("bottom");
+
+var expressionAxis = d3.svg.axis()
+    .scale(exy)
+    .orient("left");
+
+d3.select("#svg-container").append("svg")
+    .attr("height", sm_graph_height + margin.top + margin.bottom)
+  .append("g")
+  	.attr("id", "sm-graph")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+var sm_graph = d3.select("#sm-graph");
+
+sm_graph.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + (sm_graph_height - 10) + ")")
+    .call(ageAxis)
+  .append("text")
+  	.attr("dy", 16)
+  	.attr("dx", 10)
+  	.text("age");
+
+sm_graph.append("g")
+    .attr("class", "y axis")
+    .call(expressionAxis);
+
 
 
 
@@ -25,49 +63,15 @@ var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left");
 
-
-// eventually this will be its own d3 data bound element
-var specimens = [
-								 // 'accepted_hits_1_old.bam',
-								 'accepted_hits_2_old.bam',
-								 'accepted_hits_2_old.bam',
-								 // 'accepted_hits_3_young.bam',
-								 // 'accepted_hits_4_young.bam'
-								];
-
-/* INITIALIZE SVG STUFF */
-// make a graph for each specimen we have loaded
+// used later for samples
 var read_graphs = []
-cindex = 0;
-specimens.forEach(function(s) {
-	var name = s.replace('.bam', '')
-							.replace('accepted_hits_', '')
-							.replace('_', '');
 
-	d3.select("#specimen-select").append("div")
-			.attr("class", "specimen")
-			.style("background", colors[cindex++ % colors.length])
-			.style("opacity", "0.6")
-			.attr("value", s) // full name
-			.html(name);
 
-	d3.select("#svg-container").append("svg")
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-  	.attr("class", "read-graph")
-  	.attr("id", "s" + name)
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-  .append("g")
-    .attr("class", "y axis")
-    .call(yAxis);;
-
-  read_graphs.push(d3.select("#s" + name));
-});
-// var svg = d3.select("svg g");
 
 
 d3.select("#svg-container").append("svg")
     .attr("height", genemodel_height + margin.top + margin.bottom)
+    .attr("id", "gm-graph-container")
   .append("g")
   	.attr("id", "gm-graph")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -109,10 +113,17 @@ var tooltip = d3.select("body").append("div")
 
 
 function reset_axes() {
+	sm_graph.select(".x.axis")
+      .transition().duration(500)
+      .call(ageAxis);
+  sm_graph.select(".y.axis")
+      .transition().duration(500)
+      .call(expressionAxis);
+
 	gm_graph.select(".x.axis")
       .transition().duration(500)
       .call(xAxis);
-	d3.selectAll(".y.axis")
+	d3.selectAll(".read-graph .y.axis")
       .transition().duration(500)
       .call(yAxis);
 }
@@ -122,6 +133,8 @@ var gene_model_index,
 		gene_start = 0,
 		gene_end = 0,
 		gene_chrom = '';
+
+var samples = [];
 
 
 
@@ -176,38 +189,17 @@ function decode_pileups(error, data) {
 };
 
 function update_pileups(data) {
-	// d3.select(".index").append("div")
-	//      .style("background-color", colors[cindex % colors.length])
-	//      .attr("onmouseover", "highlight(this)")
-	//      .text(specimens[0]);
-
-	var svg = d3.select("#s" + data[0].sample);
 	// console.log(d3.select("#s" + data[0].sample));
+	var svg = d3.select("#s" + data[0].sample);
+	svg.select(".pileup").remove();
 
 	var pileups = svg.selectAll('.pileup').data(data);
 
-	// pileups.enter().append('path')
-	// 		.datum(data)
- //      .attr("class", "pileup")
- //      .attr("id", specimens[0])
- //      .style("stroke", colors[cindex % colors.length])
- //      .style("fill", colors[cindex++ % colors.length])
- //      .attr("d", 
- //      	d3.svg.area()
-	// 		      .x(function(d) { return x(d.i); })
-	// 		      .y0(height - genemodel_height)
-	// 		      .y1(function(d) { return y(d.n); })
- //      ); // last line added
-
- //  pileups.exit().remove();
-
-  // y.domain([0, Math.max(20, d3.max(data, function(d) { return d.n; }))]);
-  y.domain([0, Math.max(20, get_actual_max(data, 'n'))]);
+	y.domain([0, Math.max(20, get_actual_max(data, 'n'))]);
   
   svg.append("path")
       .datum(data)
       .attr("class", "pileup")
-      .attr("id", specimens[0])
       .style("stroke", colors[cindex % colors.length])
       .style("stroke-width", "1")
       .style("fill", colors[cindex++ % colors.length])
@@ -274,7 +266,7 @@ function update_reads(data) {
 function decode_genemodel(error, data) {
 	// data.forEach(stacker);
 	data.forEach(function(d){
-		console.log(d.start + ' ' + d.end + ' ' + d.type);
+		// console.log(d.start + ' ' + d.end + ' ' + d.type);
 	})
 	update_genemodel(data);
 }
@@ -284,7 +276,7 @@ function update_genemodel(data) {
 	gm_graph.selectAll(".gene-node").remove();
 
 	// load new
-	var genes = gm_graph.selectAll("gene-node")
+	var genes = gm_graph.selectAll(".gene-node")
 			.data(data)
 			.enter()
 		.append("g")
@@ -351,7 +343,59 @@ function decode_geneindex(error, data) {
 	gene_model_index = data;
 }
 
+/* IMPORT ALL SAMPLES */ 
+function decode_sampleindex(error, data) {
+	// console.log(data);
+	cindex = 0;
+	data.forEach(function(d) {
+		d.color = colors[cindex % colors.length];
 
+		d3.select("#specimen-select").append("div")
+				.attr("class", "specimen")
+				.style("background", colors[cindex++ % colors.length])
+				// .style("opacity", "0.6")
+				.attr("value", d.filename)
+				.html(d.name);
+
+		d3.select("#svg-container").insert("svg", "#gm-graph-container")
+		    .attr("height", height + margin.top + margin.bottom)
+		  .append("g")
+		  	.attr("class", "read-graph")
+		  	.attr("id", "s" + d.name)
+		    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+		  .append("g")
+		    .attr("class", "y axis")
+		    .call(yAxis)
+	   	.append("text")
+	  		.attr("dy", 3)
+	  		.attr("dx", 10)
+	  		.text(d.name);
+
+	  read_graphs.push(d3.select("#s" + d.name));
+	});
+
+	agex.domain([0, get_actual_max(data, 'age')])
+	reset_axes();
+	// console.log(agex.domain());
+
+	samples = data;
+	update_sampleindex(data);
+}
+
+function update_sampleindex(data) {
+	var samples = sm_graph.selectAll(".sample").data(data);
+	
+	cindex = 0;
+	samples.enter()
+		.append("circle")
+			.attr("class", "sample")
+			.attr("r", "10")
+			.style("fill", function(d) {return d.color; });
+
+	samples
+			.attr("cx", function(d) { return agex(d.age); })
+			.attr("cy", function(d) { return exy(d.expression); });
+}
 
 
 
@@ -375,7 +419,9 @@ function resize() {
 	
 	width = parseInt(container.style("width")) - margin.left - margin.right;
   d3.selectAll("svg").attr("width", parseInt(container.style("width")));
+	
 	x.range([0, width]);
+	agex.range([0, width]);
 
 	reset_axes();
 
@@ -405,6 +451,10 @@ function resize() {
 			      .y0(height)
 			      .y1(function(d) { return y(d.n); })
       )
+
+  sm_graph.selectAll(".sample")
+			.attr("cx", function(d) { return agex(d.age); })
+			.attr("cy", function(d) { return exy(d.expression); });
 }
 
 // highlight the area of this path and not others
@@ -449,7 +499,7 @@ search.onEnter = function() {
 		}
 	}
 
-	console.log(gene_start + ' ' + gene_end);
+	// console.log(gene_start + ' ' + gene_end);
 
 	if(gene_end != null) {
 	// if(false) {
@@ -462,15 +512,42 @@ search.onEnter = function() {
 		// 			 ';name=' + gene_name +
 		// 			 ';chrom=' + gene_chrom, decode_reads);
 
-		d3.selectAll('.pileup').remove(); // temporary
+		// d3.selectAll('.pileup').remove(); // temporary
 		
-		specimens.forEach(function(sample) {
-			d3.tsv('api/pileups/?sample=' + sample +
+		samples.forEach(function(sample) {
+			d3.tsv('api/pileups/?sample=' + sample.filename +
 					 ';start=' + gene_start +
 					 ';end=' + gene_end + 
 					 ';name=' + gene_name +
-					 ';chrom=' + gene_chrom, decode_pileups);	
+					 ';chrom=' + gene_chrom, decode_pileups);
 		})
+
+		// get expression
+		d3.tsv('api/expressions/?gene' + gene_name, function(error, data) {
+			
+			data.forEach(function(d) {
+				// find matching sample
+				var sample = null;
+				for(var i=0;i < samples.length;i++) {
+					if(d.name == samples[i].name) {
+						samples[i].expression = d.expression;
+					}
+				}
+			});
+
+			// calc range
+			// exy.domain([0, get_actual_max(samples, 'expression')]);
+			exy.domain([0, 10]);
+			console.log(exy.domain());
+
+			// regraph the top graph
+			sm_graph.selectAll(".sample").data(samples)
+				.transition()
+					.attr("cy", function(d) { return exy(d.expression); });
+			reset_axes();
+		})
+
+		
 		
 			
 		// before when I was preprocessing them beforehand
@@ -482,6 +559,7 @@ search.onEnter = function() {
 }
 
 d3.tsv("static/data/gene_model_index", decode_geneindex);
+d3.tsv("static/data/sample_index", decode_sampleindex);
 resize();
 search.input.focus();
 paceOptions = {
