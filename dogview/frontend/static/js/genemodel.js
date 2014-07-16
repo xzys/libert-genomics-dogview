@@ -134,7 +134,8 @@ var gene_model_index,
 		gene_end = 0,
 		gene_chrom = '';
 
-var samples = [];
+var samples = [],
+		genemodels = [];
 
 
 
@@ -181,10 +182,10 @@ function get_actual_max(data, accessor) {
 
 /* ANALYZE PILEUPS */
 function decode_pileups(error, data) {
+ 	// console.log("lpl" + data);
   data.forEach(function(d, i) {
     d.i = i;
   });
- 	// console.log(data);
 	update_pileups(data);
 };
 
@@ -262,12 +263,19 @@ function update_reads(data) {
 	reset_axes();	
 }
 
+
+
+
+
+
 /* ANALYZE GENEMODEL */
 function decode_genemodel(error, data) {
 	// data.forEach(stacker);
 	data.forEach(function(d){
 		// console.log(d.start + ' ' + d.end + ' ' + d.type);
 	})
+	// console.log(data);
+	genemodels = data;
 	update_genemodel(data);
 }
 
@@ -515,6 +523,13 @@ search.onEnter = function() {
 		// d3.selectAll('.pileup').remove(); // temporary
 		
 		samples.forEach(function(sample) {
+			console.log(
+					 'api/pileups/?sample=' + sample.filename +
+					 ';start=' + gene_start +
+					 ';end=' + gene_end + 
+					 ';name=' + gene_name +
+					 ';chrom=' + gene_chrom);
+
 			d3.tsv('api/pileups/?sample=' + sample.filename +
 					 ';start=' + gene_start +
 					 ';end=' + gene_end + 
