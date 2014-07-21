@@ -169,14 +169,14 @@ def main():
 	# print s.getrname(i)
 	# analyze_reads(s)
 	
-	# print 'loading.....',
-	# gff = pybedtools.BedTool('../latest_dog_genes.gff')
-	# print 'loaded'
-	# analyze_genemodel(gff)
+	print 'loading.....',
+	gff = pybedtools.BedTool('../latest_dog_genes.gff')
+	print 'loaded'
+	analyze_genemodel(gff)
 
 
 
-	fo = analyze_pileups_from_start('accepted_hits_2_old.bam', 600803, 635338, 'bs', '1')
+	# fo = analyze_pileups_from_start('accepted_hits_2_old.bam', 600803, 635338, 'bs', '1')
 
 
 

@@ -15,6 +15,10 @@ def reads(request):
 		name = str(request.GET.get('name', ''))
 		chrom = str(request.GET.get('chrom', ''))
 
+		# bad request
+		if end - start > 100000:
+			raise ValueError()
+
 		return HttpResponse(analyze_reads_from_start(sample, start, end, name, chrom))
 	except ValueError as e:
 		print e
@@ -27,6 +31,9 @@ def pileups(request):
 		end = int(request.GET.get('end', ''))
 		name = str(request.GET.get('name', ''))
 		chrom = str(request.GET.get('chrom', ''))
+
+		if end - start > 100000:
+			raise ValueError()
 
 		return HttpResponse(analyze_pileups_from_start(sample, start, end, name, chrom))
 	except ValueError as e:
@@ -62,6 +69,7 @@ import StringIO
 
 """filter reads based on where this gene starts and ends"""
 def analyze_reads_from_start(sample, start, end, gene, chrom):
+
 	# load this file
 	# try to keep it in memory?
 	s = pysam.Samfile('/media/Data/Downloads/real/' + sample, 'rb')
@@ -104,7 +112,7 @@ def analyze_pileups_from_start(sample, start, end, gene, chrom):
 	out.writerow(['n', 'sample'])
 
 	piles = s.pileup(chrom, start, end)
-	print 'starting'
+	print 'starting analyzing pileups'
 	
 	for pile in piles:
 		out.writerow([pile.n, shortened])
