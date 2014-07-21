@@ -183,9 +183,23 @@ function get_actual_max(data, accessor) {
 /* ANALYZE PILEUPS */
 function decode_pileups(error, data) {
  	// console.log("lpl" + data);
+  var p = 0;
   data.forEach(function(d, i) {
     d.i = i;
+    var exon = false,
+    		actual_loc = parseInt(d.i) + parseInt(gene_start);
+    // console.log(actual_loc);
+    for(var j=0;j < genemodels.length;j++) {
+  		if(actual_loc > parseInt(genemodels[j].start) && actual_loc < parseInt(genemodels[j].end)) {
+  			exon = true;
+  			break;
+  		}
+  	}
+
+  	d.exon = exon;
   });
+
+  
 	update_pileups(data);
 };
 
@@ -200,7 +214,7 @@ function update_pileups(data) {
   
   svg.append("path")
       .datum(data)
-      .attr("class", "pileup")
+      .attr("class", "pileup pileup-exons")
       .style("stroke", colors[cindex % colors.length])
       .style("stroke-width", "1")
       .style("fill", colors[cindex++ % colors.length])
@@ -209,7 +223,9 @@ function update_pileups(data) {
       	d3.svg.area()
 			      .x(function(d) { return x(d.i); })
 			      .y0(height)
-			      .y1(function(d) { return y(d.n); })
+			      .y1(function(d) {
+			      	return y((d.exon) ? d.n : 0);
+			    })
       )
     .transition()
     	.duration(300)

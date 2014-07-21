@@ -36,7 +36,9 @@ function resize() {
       	d3.svg.area()
 			      .x(function(d) { return x(d.i); })
 			      .y0(height)
-			      .y1(function(d) { return y(d.n); })
+			      .y1(function(d) {
+			      	return y((d.exon) ? d.n : 0);
+			    })
       )
 
   sm_graph.selectAll(".sample")
@@ -91,16 +93,12 @@ search.onEnter = function() {
 			
 			// find gene end and start here
 			data.forEach(function(d){
-				// console.log(d.start + ' ' + d.end + ' ' + d.type);
-				console.log(gene_start + ' ' + gene_end + ':' + d.start + ' ' + d.end);
 				if(gene_end == null || d.end > gene_end) gene_end = d.end;
 				if(gene_start == null || d.start < gene_start) gene_start = d.start;
 
 			})
 
 			genemodels = data;
-			update_genemodel(data);
-
 
 			samples.forEach(function(sample) {
 				console.log(
@@ -139,6 +137,8 @@ search.onEnter = function() {
 						.attr("cy", function(d) { return exy(d.expression); });
 				reset_axes();
 			})
+
+			update_genemodel(data);
 		});
 			
 
