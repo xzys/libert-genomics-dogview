@@ -206,7 +206,7 @@ function decode_pileups(error, data) {
 function update_pileups(data) {
 	// console.log(d3.select("#s" + data[0].sample));
 	var svg = d3.select("#s" + data[0].sample);
-	svg.select(".pileup").remove();
+	svg.selectAll(".pileup").remove();
 
 	var pileups = svg.selectAll('.pileup').data(data);
 
@@ -214,10 +214,10 @@ function update_pileups(data) {
   
   svg.append("path")
       .datum(data)
-      .attr("class", "pileup pileup-exons")
+      .attr("class", "pileup exons")
       .style("stroke", colors[cindex % colors.length])
       .style("stroke-width", "1")
-      .style("fill", colors[cindex++ % colors.length])
+      .style("fill", colors[cindex % colors.length])
       .style("fill-opacity", '0')
       .attr("d", 
       	d3.svg.area()
@@ -230,6 +230,23 @@ function update_pileups(data) {
     .transition()
     	.duration(300)
     	.style("fill-opacity", "0.6");
+
+  // EXACT same except for introns instead of exons and no transition
+  svg.append("path")
+      .datum(data)
+      .attr("class", "pileup introns")
+      .style("stroke", colors[cindex % colors.length])
+      .style("stroke-width", "1")
+      .style("fill", colors[cindex++ % colors.length])
+      .style("fill-opacity", '0')
+      .attr("d", 
+      	d3.svg.area()
+			      .x(function(d) { return x(d.i); })
+			      .y0(height)
+			      .y1(function(d) {
+			      	return y((!d.exon) ? d.n : 0);
+			    })
+      );
 
   reset_axes();
 }

@@ -31,13 +31,23 @@ function resize() {
 			.attr("x1", function(d) { return x(d.start - gene_start); })
 			.attr("x2", function(d) { return x(d.end - gene_start); });
 
-	container.selectAll(".pileup")
+	container.selectAll(".pileup exons")
 			.attr("d", 
       	d3.svg.area()
 			      .x(function(d) { return x(d.i); })
 			      .y0(height)
 			      .y1(function(d) {
 			      	return y((d.exon) ? d.n : 0);
+			    })
+      )
+  
+  container.selectAll(".pileup introns")
+			.attr("d", 
+      	d3.svg.area()
+			      .x(function(d) { return x(d.i); })
+			      .y0(height)
+			      .y1(function(d) {
+			      	return y((!d.exon) ? d.n : 0);
 			    })
       )
 
@@ -61,8 +71,6 @@ function unhighlight(div) {
       .transition().duration(200)
       .style("fill-opacity", "0.0");
 }
-
-
 
 
 var search = completely(document.getElementById("searchbox"), {
@@ -99,6 +107,7 @@ search.onEnter = function() {
 			})
 
 			genemodels = data;
+			update_genemodel(data);
 
 			samples.forEach(function(sample) {
 				console.log(
@@ -135,24 +144,8 @@ search.onEnter = function() {
 				sm_graph.selectAll(".sample").data(samples)
 					.transition()
 						.attr("cy", function(d) { return exy(d.expression); });
-				reset_axes();
 			})
-
-			update_genemodel(data);
 		});
-			
-
-
-		
-
-		// d3.tsv('api/reads/?specimen=' + 'accepted_hits_2_old.bam' +
-		// 			 ';start=' + gene_start +
-		// 			 ';end=' + gene_end + 
-		// 			 ';name=' + gene_name +
-		// 			 ';chrom=' + gene_chrom, decode_reads);
-
-		// d3.selectAll('.pileup').remove(); // temporary
-		
 		
 
 		
