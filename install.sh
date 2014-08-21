@@ -12,12 +12,13 @@ mkdir install
 cd install
 
 echo "installing build tools"
-sudo apt-get install zlib1g-dev zlib1g build-essential make cmake g++ lib61z1 -y
+sudo apt-get install zlib1g-dev zlib1g build-essential make cmake g++ lib61z1 default-jre default-jdk -y
 
 echo "installing genomic software: Tophat, Fastqc, cufflinks, samtools"
 sudo apt-get install tophat fastqc cufflinks samtools -y
 
 
+sudo apt-get install python-dev libxml2-dev libxslt-dev python-pip
 
 echo "installing bamtools"
 git clone git://github.com/pezmaster31/bamtools.git

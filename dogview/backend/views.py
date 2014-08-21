@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import random
 
-# Create your views here.
+# different views for each type of data
 def index(request):
 	return HttpResponse("Hello, world. You're at the index.")
 
@@ -23,7 +23,8 @@ def reads(request):
 	except ValueError as e:
 		print e
 		return HttpResponse("bad params dude")
-		
+
+# same thing really but only get the pileups and not reads
 def pileups(request):
 	try:
 		sample = str(request.GET.get('sample', ''))
@@ -40,6 +41,7 @@ def pileups(request):
 		print e
 		return HttpResponse("bad params dude")
 
+# return a list of all the genes from sample index and their expression values
 def expressions(request):
 	temp = StringIO.StringIO()
 	out = csv.writer(temp, delimiter='\t')
@@ -52,6 +54,8 @@ def expressions(request):
 			pr = lines[i].split('\t')[:-1]
 			pr.append(random.random() * 10)
 
+			# here is where you actually go and get the expression values from the cufflinks file
+
 			out.writerow(pr)
 
 	return HttpResponse(temp.getvalue())
@@ -61,6 +65,9 @@ def expressions(request):
 
 
 
+
+
+# ACTUALLY GO AND GET DATA FROM FILES 
 
 import pysam
 import pybedtools
