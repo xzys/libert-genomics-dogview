@@ -1,0 +1,49 @@
+jen's pipeline was mostly straightforward except:
+
+*cuffcompare requires the 'genome.fa' file from the WholeGenomeFasta folder of the CanFam 3.1 assembly, not the genome.fa that is in the Bowtie2Index folder
+
+*cuffcompare had multiple warnings of 'Warning: couldn't find fasta record 
+
+
+input for cuffdiff (from /local/workdir/mp793):
+
+cuffdiff -p 8 -o cufflinks_out/cuffcmp.combined.gtf cuffquant_out/abundances_1_old.cxb cuffquant_out/abundances_2_old.cxb...
+
+--> Got warning = 'Warning: No conditions are replicated, switching to 'blind' dispersion model'
+	-probably just means that no .cxb files were separated by a ',' and thus technically none of the 		.cxb files were replicates --> spaces separating .cxb files indicates that these were separate 		experiments, i.e. old1, old2, young3
+
+
+Differential expression analysis using cuffdiff had the following output mid-processing:
+
+Map Properties:
+	Normalized Map Mass: 11469478.16
+	Raw Map Mass: 9790419.00
+	Fragment Length Distribution: Truncated Gaussian (default)
+		Default Mean: 200
+		Default Std Dev: 80
+
+Same output was repeated x4 (once for each dog RNA sample), but differed in the Raw Map Mass:
+(based on order of input)
+1_old. 9790419.00
+2_old. 12255232.00
+3_young. 10759502.00
+4_young. 13534691.00
+
+**This is incorrect --> 2 young samples and 2 old samples should have been put together as 'replicates'
+--> added ',' between 1_old.cxb and 2_old.cxb files and young files
+
+Same map properties as in the previous trial (confirms that each .cxb file was correctly taken in by the program)
+Importantly, at the end of the output the cufflinks program confirmed that it 'Performed 0 splicing tests' which is indeed what we wanted - no novel splice junction discovery
+
+Output = 
+gene_exp.diff --> can be opened by excel, with q1 = old, q2 = young
+	-Sirt6 did have a significant change between young and old :( 
+
+
+-Ran Bamtools on the accepted_hits.bam files output from tophat for each of the 4 dog samples, input:
+
+bamtools index -in <path to /accepted_hits.bam>
+
+(rest of the documentation can be found at Tutorial_Toolkit_BamTools-1.0.pdf on the Desktop)
+
+--> This was a necessary step for visualizing the .bam files in IGV (integrative genome viewer) because that program requires the .bam files to be indexed for some reason

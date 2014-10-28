@@ -1,0 +1,13 @@
+summary of 06-18 run on 1_old_trimmed can be found in /local/workdir/mp793/tophat_out//align_summary.txt
+
+from /local/workdir/mp793:
+
+1. tophat -G latest_dog_genes.gtf --transcriptome-index=out_d genome
+
+genome files in .bt2 format must in the directory that you are currently in
+
+2. tophat -p 8 -o /local/workdir/mp793/tophat_out/ --transcriptome-index=out_d/latest_dog_genes --no-novel-juncs /local/workdir/mp793/genome 1_old_trimmed.fastq.gz
+
+04:15:09 elapsed
+
+total: 44705212 kept reads (100127 discarded that didn't meet min l=20, max l=101)

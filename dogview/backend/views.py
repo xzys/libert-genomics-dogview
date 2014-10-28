@@ -1,6 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import random
+import pysam
+import pybedtools
+import csv
+import StringIO
+import itertools
 
 # different views for each type of data
 def index(request):
@@ -43,36 +48,45 @@ def pileups(request):
 
 # return a list of all the genes from sample index and their expression values
 def expressions(request):
+	gene = str(request.GET.get('gene', '')).strip()
+
 	temp = StringIO.StringIO()
 	out = csv.writer(temp, delimiter='\t')
-	out.writerow(['filename', 'name', 'age', 'expression'])
+	out.writerow(['filename', 'name', 'age', 'gene', 'expression'])
 
-	with open('/media/Data/Dropbox/Libert/libert-genomics-pipeline/dogview/frontend/static/data/sample_index') as f:
+	with open('frontend/static/data/sample_index') as f:
 		lines = f.readlines()
-		
-		for i in range(1, len(lines)):
-			pr = lines[i].split('\t')[:-1]
-			pr.append(random.random() * 10)
+		samples = len(lines) - 1
 
-			# here is where you actually go and get the expression values from the cufflinks file
+		if gene is not '':
+			with open('frontend/static/data/gene_exp.diff') as f:
+				# print f.readline()
+				# print f.readline().split('\t')[2] == 'PARD6G'
+				expressions = next((row.split('\t')[5 + samples:5 + 2 * samples] for row in f 
+					   	    		if row.split('\t')[2] == gene), None)
 
-			out.writerow(pr)
+				# this should get the correct values
+				# but duoble check with the first line header
+				# print row.split('\t')[5 + samples:5 + 2 * samples]
+
+
+		for i in range(samples):
+			pr = lines[i + 1].split('\t')
+
+			if gene is not '' and expressions is not None:
+				out.writerow((pr[0], pr[1], int(pr[2]), gene, expressions[i]))
+			else:
+				out.writerow((pr[0], pr[1], int(pr[2]), 'NA', '0.0'))
 
 	return HttpResponse(temp.getvalue())
 
 
+def refresh_gene_index():
+	pass
 
 
 
-
-
-
-# ACTUALLY GO AND GET DATA FROM FILES 
-
-import pysam
-import pybedtools
-import csv
-import StringIO
+######################## ACTUALLY GO AND GET DATA FROM FILES ######################## 
 
 """filter reads based on where this gene starts and ends"""
 def analyze_reads_from_start(sample, start, end, gene, chrom):
