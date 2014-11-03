@@ -76,11 +76,11 @@ def pileups(request):
 	and not reads
 	"""
 	try:
-		sample = str(request.GET.get('sample', ''))
-		start = int(request.GET.get('start', ''))
-		end = int(request.GET.get('end', ''))
-		name = str(request.GET.get('name', ''))
-		chrom = str(request.GET.get('chrom', ''))
+		sample = str(request.args['sample'])
+		start = int(request.args['start'])
+		end = int(request.args['end'])
+		name = str(request.args['name'])
+		chrom = str(request.args['chrom'])
 
 		if end - start > 100000:
 			raise ValueError()
