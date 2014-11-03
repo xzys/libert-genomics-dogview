@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import request
 from flask import render_template
 app = Flask(__name__)
 
@@ -13,10 +14,43 @@ import itertools
 
 # VIEWS
 
-@app.route('/')
+@app.route('/index')
 def index():
     return render_template('graph.html')
 
+@app.route('/expressions')
+def expressions():
+	"""
+	return a list of all the genes from sample 
+	index and their expression values"""
+	
+	try:
+		gene = request.args['gene']
+	except:
+		return abort("bad params dude")
+
+	temp = StringIO.StringIO()
+	out = csv.writer(temp, delimiter='\t')
+	out.writerow(['filename', 'name', 'age', 'gene', 'expression'])
+
+
+	with open('static/data/sample_index') as f:
+		lines = f.readlines()
+		samples = len(lines) - 1
+
+		for i in range(samples):
+			pr = lines[i + 1].split('\t')
+
+			with open('data/diff1/genes.fpkm_tracking') as f:
+				# expressions = next((row.split('\t')[5 + samples:5 + 2 * samples] for row in f 
+					   	    		# if row.split('\t')[2] == gene), None)
+				
+				row = next((row.split('\t') for row in f if row.split('\t')[4] == gene), None)
+				out.writerow((pr[0], pr[1], int(pr[2]), gene, (float(row[9]) + float(row[13])) * 0.5))
+
+	return temp.getvalue()
+
+@app.route('/reads')
 def reads(request):
 	"""return reads from start to end"""
 	try:
@@ -35,6 +69,7 @@ def reads(request):
 		print e
 		return abort("bad params dude")
 
+@app.route('/pileups')
 def pileups(request):
 	"""
 	same thing really but only get the pileups
@@ -55,45 +90,11 @@ def pileups(request):
 		print e
 		return abort("bad params dude")
 
-def expressions(request):
-	"""
-	return a list of all the genes from sample 
-	index and their expression values"""
-	gene = str(request.GET.get('gene', '')).strip()
-
-	temp = StringIO.StringIO()
-	out = csv.writer(temp, delimiter='\t')
-	out.writerow(['filename', 'name', 'age', 'gene', 'expression'])
-
-	with open('frontend/static/data/sample_index') as f:
-		lines = f.readlines()
-		samples = len(lines) - 1
-
-		if gene is not '':
-			with open('frontend/static/data/gene_exp.diff') as f:
-				# print f.readline()
-				# print f.readline().split('\t')[2] == 'PARD6G'
-				expressions = next((row.split('\t')[5 + samples:5 + 2 * samples] for row in f 
-					   	    		if row.split('\t')[2] == gene), None)
-
-				# this should get the correct values
-				# but duoble check with the first line header
-				# print row.split('\t')[5 + samples:5 + 2 * samples]
-
-
-		for i in range(samples):
-			pr = lines[i + 1].split('\t')
-
-			if gene is not '' and expressions is not None:
-				out.writerow((pr[0], pr[1], int(pr[2]), gene, expressions[i]))
-			else:
-				out.writerow((pr[0], pr[1], int(pr[2]), 'NA', '0.0'))
-
-	return temp.getvalue()
-
 
 def refresh_gene_index():
 	pass
+
+
 
 
 
@@ -168,4 +169,4 @@ def analyze_pileups_from_start(sample, start, end, gene, chrom):
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
