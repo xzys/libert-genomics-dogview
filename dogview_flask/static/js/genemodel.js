@@ -379,24 +379,33 @@ function decode_geneindex(error, data) {
 }
 
 /* IMPORT ALL SAMPLES */ 
-function decode_sampleindex(error, data) {
-	// console.log(data);
-	cindex = 0;
-	data.forEach(function(d) {
-		d.color = colors[cindex % colors.length];
+function decode_key(error, data) {
+	console.log(data);
+	samples = data;
 
+	// cindex = 0;
+	samples.forEach(function(s) {
+		if(s.breed == 'Beagle') {
+			s.color = colors[0];
+		} else {
+			s.color = colors[1];
+		}
+		s.expression = 0;
+	});
+	
+	samples.forEach(function(d) {
 		d3.select("#specimen-select").append("div")
 				.attr("class", "specimen")
-				.style("background", colors[cindex++ % colors.length])
+				.style("background", d.color)
 				// .style("opacity", "0.6")
-				.attr("value", d.filename)
-				.html(d.name);
+				.attr("value", d.id2)
+				.html(d.id2);
 
 		d3.select("#svg-container").insert("svg", "#gm-graph-container")
 		    .attr("height", height + margin.top + margin.bottom)
 		  .append("g")
 		  	.attr("class", "read-graph")
-		  	.attr("id", "s" + d.name)
+		  	.attr("id", "s" + d.id2)
 		    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 		  .append("g")
 		    .attr("class", "y axis")
@@ -404,7 +413,7 @@ function decode_sampleindex(error, data) {
 	   	.append("text")
 	  		.attr("dy", 3)
 	  		.attr("dx", 10)
-	  		.text(d.name);
+	  		.text(d.id2);
 
 	  read_graphs.push(d3.select("#s" + d.name));
 	});
@@ -412,8 +421,6 @@ function decode_sampleindex(error, data) {
 	agex.domain([0, get_actual_max(data, 'age')])
 	reset_axes();
 	// console.log(agex.domain());
-
-	samples = data;
 	update_sampleindex(data);
 }
 

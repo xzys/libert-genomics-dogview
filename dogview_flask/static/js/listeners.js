@@ -95,7 +95,7 @@ search.onEnter = function() {
 	if(found) {
 		// wait until you process jene model before you ask for samples
 		// this stuff is called after decode genemodel
-		d3.tsv('static/data/models/' + text + '.model', function(error, data) {
+		d3.tsv('static/models/' + text + '.model', function(error, data) {
 			gene_end = null;
 			gene_start = null;
 			
@@ -111,16 +111,17 @@ search.onEnter = function() {
 
 			// get expression
 
-			d3.tsv('api/expressions/?gene=' + gene_name, function(error, data) {				
+			d3.tsv('expressions?gene=' + gene_name, function(error, data) {
 				data.forEach(function(d) {
+					console.log(d);
+					
 					// find matching sample
 					var sample = null;
 					for(var i=0;i < samples.length;i++) {
-						if(d.name == samples[i].name) {
+						if(d.id == samples[i].id) {
 							samples[i].expression = d.expression;
 						}
 					}
-					console.log(d);
 				});
 
 				// calc range
@@ -133,20 +134,21 @@ search.onEnter = function() {
 						.attr("cy", function(d) { return exy(d.expression); });
 			})
 
-			samples.forEach(function(sample) {
-				console.log(
-						 'api/pileups/?sample=' + sample.filename +
-						 ';start=' + gene_start +
-						 ';end=' + gene_end + 
-						 ';name=' + gene_name +
-						 ';chrom=' + gene_chrom);
+			// no pileups for now
+			// samples.forEach(function(sample) {
+			// 	console.log(
+			// 			 'api/pileups/?sample=' + sample.filename +
+			// 			 ';start=' + gene_start +
+			// 			 ';end=' + gene_end + 
+			// 			 ';name=' + gene_name +
+			// 			 ';chrom=' + gene_chrom);
 
-				d3.tsv('api/pileups/?sample=' + sample.filename +
-						 ';start=' + gene_start +
-						 ';end=' + gene_end + 
-						 ';name=' + gene_name +
-						 ';chrom=' + gene_chrom, decode_pileups);
-			})
+			// 	d3.tsv('api/pileups/?sample=' + sample.filename +
+			// 			 ';start=' + gene_start +
+			// 			 ';end=' + gene_end + 
+			// 			 ';name=' + gene_name +
+			// 			 ';chrom=' + gene_chrom, decode_pileups);
+			// })
 		});
 		
 
@@ -161,7 +163,8 @@ search.onEnter = function() {
 }
 
 d3.tsv("static/data/gene_model_index", decode_geneindex);
-d3.tsv("static/data/sample_index", decode_sampleindex);
+d3.tsv("getkey", decode_key);
+
 resize();
 search.input.focus();
 paceOptions = {
