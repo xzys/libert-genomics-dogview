@@ -1,5 +1,0 @@
-start	end	type
-80251	80731	CDS
-80251	80821	exon
-80251	80254	start_codon
-80731	80734	stop_codon
