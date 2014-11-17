@@ -9,6 +9,7 @@ import pybedtools
 import csv
 import StringIO
 import itertools
+from scipy.odr import Model, Data, RealData, ODR
 app = Flask(__name__)
 
 
@@ -30,16 +31,26 @@ def trendline():
     try:
         gene = request.args['gene']
     except:
-        return abort('bad params dude')
+        return abort(404)
+
+    temp = StringIO.StringIO()
+    out = csv.writer(temp, delimiter='\t')
+    
 
     with open('data/trendlines') as f:
-        lines = f.readlines()
-        lines = lines[1:]
+        read = csv.reader(f, delimiter='\t')
+        out.writerow(['gene', 'a', 'b', 'r2'])
 
-        for l in lines:
-            if l.split('\t')[0] == gene:
-                return l
-    return abort('No gene found or not yet analyzed.')
+        found = False
+        for line in read:
+            if line[0] == gene:
+                out.writerow(line)
+                found = True
+
+        if found:
+            return temp.getvalue()
+        else:
+            return abort(401)
 
 
 @app.route('/expressions')
@@ -55,7 +66,7 @@ def expressions():
 
     expressions = []
     actins = []
-    ages = []   
+    ages = []
 
     with open('data/key') as f:
         lines = f.readlines()
@@ -64,6 +75,7 @@ def expressions():
             ages.append(float(l.split('\t')[2]))
 
         with open(mikedir + '/All8_t_only/genes.fpkm_tracking') as f:
+            # find the expression of this gene
             fpkms = next((row.split('\t')[9:] for row in f if row.split('\t')[4] == gene), None)
             if fpkms:
                 for i in range(samples):
@@ -71,22 +83,16 @@ def expressions():
             else:
                 abort('Gene not found')
             
+            # find the expression of this ACTB
+            # currently not using
             fpkms = next((row.split('\t')[9:] for row in f if row.split('\t')[4] == 'ACTB'), None)
             for i in range(samples):
                 actins.append(float(fpkms[i * 4]))
 
-    y = expressions
     x = ages
-    y_mean = sum(y) / samples
+    y = expressions
 
-    a = ((samples * sum((x[i] * y[i] for i in range(samples))) 
-         - (sum(x) * sum(y))) / 
-         (samples * sum((x[i] * x[i] for i in range(samples))) - pow(sum(x), 2)))
-    b = ((sum(y) - (a * sum(x))) /
-         samples)
-    r2 = (sum((pow(y[i] - (a * x[i] + b), 2) for i in range(samples))) /
-          sum((y[i] - y_mean for i in range(samples))))
-
+    a, b, r2 = calculate_ortho_regression(x, y, samples)
     # save this trendline for later use
 
     found = False
@@ -98,6 +104,7 @@ def expressions():
             if l.split('\t')[0] == gene:
                 found = True
                 break
+
     if not found:
         with open('data/trendlines', 'a') as f:
             line = '\t'.join((str(j) for j in (gene, a, b, r2)))
@@ -169,6 +176,50 @@ def refresh_gene_index():
 
 
 
+
+
+
+
+
+
+def calculate_regression(x, y, samples):
+    y_mean = sum(y) / samples
+    a = ((samples * sum((x[i] * y[i] for i in range(samples))) 
+         - (sum(x) * sum(y))) / 
+         (samples * sum((x[i] * x[i] for i in range(samples))) - pow(sum(x), 2)))
+    b = ((sum(y) - (a * sum(x))) /
+         samples)
+    r2 = (sum((pow(y[i] - (a * x[i] + b), 2) for i in range(samples))) /
+          sum((y[i] - y_mean for i in range(samples))))
+
+    return (a, b, r2)
+
+
+def func(B, x):
+    ''' B is a vector of the parameters.
+    x is an array of the current x values.
+    x is in the same format as the x passed to Data or RealData.
+    Return an array in the same format as y passed to Data or RealData.
+    '''
+    return B[0]*x + B[1]
+
+
+def calculate_ortho_regression(x, y, samples):
+    sx = numpy.cov(x, y)[0][0]
+    sy = numpy.cov(x, y)[1][1]
+
+    
+    linear = Model(func)
+    # data = Data(x, y, wd=1./pow(sx, 2), we=1./pow(sy, 2))
+    data = Data(x, y)
+    odr = ODR(data, linear, beta0=[1., 2.])
+    out = odr.run()
+
+    print '\n'
+    out.pprint()
+    print '\n'
+
+    return (out.beta[0], out.beta[1], out.res_var)
 
 
 
