@@ -181,21 +181,29 @@ search.onEnter = function() {
 
     // plot trendlines
     d3.tsv('trendline?gene=' + gene_name, function(error, data) {
-      var trendData = [[agex.domain()[0],
-                        parseFloat(data[0].a) * agex.domain()[0] + parseFloat(data[0].b),
-                        agex.domain()[1], 
-                        parseFloat(data[0].a) * agex.domain()[1] + parseFloat(data[0].b)]];
+      var trendData = [];
+      data.forEach(function(d) {
+        trendData.push(
+          {
+            breed : d.breed,
+            x1    : agex.domain()[0],
+            y1    : parseFloat(d.a) * agex.domain()[0] + parseFloat(d.b),
+            x2    : agex.domain()[1], 
+            y2    : parseFloat(d.a) * agex.domain()[1] + parseFloat(d.b)
+          });
+      });
   
       console.log(trendData);
       sm_graph.selectAll(".trendline").data(trendData)
         .enter().append("line")
           .attr("class", "trendline")
-          .attr("stroke", "black")
+          .attr("stroke", function(d) { return d.breed == "Beagle" ? colors[0] : colors[1]; })
+          .attr("stroke-dasharray", "5,5")
           .attr("stroke-width", 1)
-          .attr("x1", function(d) { return agex(d[0]); })
-          .attr("y1", function(d) { return exy(d[1]); })
-          .attr("x2", function(d) { return agex(d[2]); })
-          .attr("y2", function(d) { return exy(d[3]); });
+          .attr("x1", function(d) { return agex(d.x1); })
+          .attr("y1", function(d) { return exy(d.y1); })
+          .attr("x2", function(d) { return agex(d.x2); })
+          .attr("y2", function(d) { return exy(d.y2); });
 
 
 

@@ -39,9 +39,10 @@ def trendline():
 
     with open('data/trendlines') as f:
         read = csv.reader(f, delimiter='\t')
-        out.writerow(['gene', 'a', 'b', 'r2'])
+        out.writerow(['gene', 'breed', 'a', 'b', 'r2'])
 
         found = False
+        # give all the breeds
         for line in read:
             if line[0] == gene:
                 out.writerow(line)
@@ -66,13 +67,15 @@ def expressions():
 
     expressions = []
     actins = []
-    ages = []
 
+    # redo this code lates
     with open('data/key') as f:
-        lines = f.readlines()
-        samples = 8
-        for l in lines[1:]:
-            ages.append(float(l.split('\t')[2]))
+        read = csv.reader(f, delimiter='\t')
+        # toss first line because it's the header
+        read.next()
+        # inverse zip whooaa
+        ages, breeds = zip(*[(float(line[2]), line[3]) for line in read])
+        samples = len(ages)
 
         with open(mikedir + '/All8_t_only/genes.fpkm_tracking') as f:
             # find the expression of this gene
@@ -89,27 +92,32 @@ def expressions():
             for i in range(samples):
                 actins.append(float(fpkms[i * 4]))
 
-    x = ages
-    y = expressions
 
-    a, b, r2 = calculate_ortho_regression(x, y, samples)
-    # save this trendline for later use
+    breed_types = set(breeds)
+    for breed in breed_types:
+        # filter by breed
+        x = [ages[i] for i in range(len(ages)) if breeds[i] == breed]
+        y = [expressions[i] for i in range(len(expressions)) if breeds[i] == breed]
 
-    found = False
-    with open('data/trendlines') as f:
-        lines = f.readlines()
-        lines = lines[1:]
+        a, b, r2 = calculate_ortho_regression(x, y, samples)
+        # save this trendline for later use
 
-        for l in lines:
-            if l.split('\t')[0] == gene:
-                found = True
-                break
+        found = False
+        with open('data/trendlines') as f:
+            lines = f.readlines()
+            lines = lines[1:]
 
-    if not found:
-        with open('data/trendlines', 'a') as f:
-            line = '\t'.join((str(j) for j in (gene, a, b, r2)))
-            print line
-            f.write('\n' + line)
+            for line in lines:
+                if line.split('\t')[0] == gene and line.split('\t')[1] == breed:
+                    found = True
+                    print line
+                    break
+
+        if not found:
+            with open('data/trendlines', 'a') as f:
+                line = '\t'.join((str(j) for j in (gene, breed, a, b, r2)))
+                print line
+                f.write('\n' + line)
 
 
     temp = StringIO.StringIO()
@@ -217,7 +225,6 @@ def calculate_ortho_regression(x, y, samples):
 
     print '\n'
     out.pprint()
-    print '\n'
 
     return (out.beta[0], out.beta[1], out.res_var)
 
