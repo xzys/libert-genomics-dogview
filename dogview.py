@@ -16,7 +16,7 @@ app = Flask(__name__)
 mikedir = '/home/server/Desktop/mike_workdir'
 
 # VIEWS
-@app.route('/index')
+@app.route('/')
 def index():
     return render_template('graph.html')
 
